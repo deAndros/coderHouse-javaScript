@@ -1,33 +1,3 @@
-
-// class Jugador { 
-//   nombre;
-//   apellido;
-//   edad;
-//   constructor() {
-//   }
-//   setNombre (value) {
-//     this.nombre
-//   }
-// }
-
-/*
-const button = document.getElementById("success");
-const jugadores = [];
-Math.random()
-console.log(this);
-*/
-
-
-// function agregarJugador() {
-//     const MAXJUGADORES = 10;
-//     while (jugadores.length !== MAXJUGADORES) {
-//         jugadores.push(prompt("Ingrese jugador"))
-//     }
-//     button.addEventListener("click", () => {
-//       alert("funcionalidad");
-//     });
-// }; 
-
 alert("Bienvenido a Andros Team Builder (ALFA version)!")
 
 function buildTeam(playerAmount){
@@ -57,7 +27,7 @@ function selectEvent(){
     switch(event){
         case("1"):
             if(prompt("¿Desea planificar al equipo rival?\n1 - Sí\n2 - No") == "1"){
-                alert("Equipo 1 - " + buildTeam(5) + "\nVS\nEquipo 2 - " + buildTeam(5))
+                alert("Equipo 1 - " + buildTeam(5) + "\nVS\n\nEquipo 2 - " + buildTeam(5))
             } else {
                 buildTeam(5)
             }
@@ -65,7 +35,7 @@ function selectEvent(){
             
         case("2"):
             if(prompt("¿Desea planificar al equipo rival?\n1- Sí\n2 - No") == "1"){
-                alert("Equipo 1 - " + buildTeam(3) + "\nVS\nEquipo 2 - " + buildTeam(3))
+                alert("Equipo 1 - " + buildTeam(3) + "\nVS\n\nEquipo 2 - " + buildTeam(3))
             } else {
                 buildTeam(3)
             }
