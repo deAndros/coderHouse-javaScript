@@ -10,7 +10,7 @@ function buildTeam(playerAmount){
         //Valido que no puedan ingresarse caracteres numéricos utilizando expresiones regulares
         if(/\d/.test(player)){
             i = i-1
-            alert("No se admiten caracteres numéricos en nombres de jugadores")
+            alert("No se admiten caracteres numéricos en los nombres de los jugadores")
             continue
         }
 
