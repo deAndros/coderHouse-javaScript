@@ -40,6 +40,10 @@ function selectEvent(){
                 alert(buildTeam(3))
             }
             break;
+            
+        default:
+            alert("La opción ingresada no se encuentra disponible, por favor ingrese otra")
+            selectEvent()
     }
 }
 
