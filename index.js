@@ -29,7 +29,7 @@ function selectEvent(){
             if(prompt("¿Desea planificar al equipo rival?\n1 - Sí\n2 - No") == "1"){
                 alert("Equipo 1 - " + buildTeam(5) + "\nVS\n\nEquipo 2 - " + buildTeam(5))
             } else {
-                buildTeam(5)
+                alert(buildTeam(5))
             }
             break;
             
@@ -37,7 +37,7 @@ function selectEvent(){
             if(prompt("¿Desea planificar al equipo rival?\n1- Sí\n2 - No") == "1"){
                 alert("Equipo 1 - " + buildTeam(3) + "\nVS\n\nEquipo 2 - " + buildTeam(3))
             } else {
-                buildTeam(3)
+                alert(buildTeam(3))
             }
             break;
     }
