@@ -37,7 +37,7 @@ function buildTeam(playerAmount, teamNumber){
             continue
         } else {
             let player = new Player(playerName, i)
-            team.addPlayer(player)
+            team.addPlayer(player.name)
         }
     }   
     console.log(team.players.join("\n"))
