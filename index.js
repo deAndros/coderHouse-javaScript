@@ -13,7 +13,11 @@ class Team {
     }
 
     listTeam(){
-        return this.name + "\n" + this.players.join("\n")
+        let teamString = ""
+        for (const player of this.players) {
+            teamString += player.name + "\n"
+        }
+        return this.name + "\n" + teamString
     }
 }
 
@@ -36,11 +40,11 @@ function buildTeam(playerAmount, teamNumber){
             alert("No se admiten caracteres numéricos en los nombres de los jugadores")
             continue
         } else {
-            let player = new Player(playerName, i)
-            team.addPlayer(player.name)
+            let player = new Player(playerName, teamNumber)
+            team.addPlayer(player)
         }
     }   
-    console.log(team.players.join("\n"))
+    console.log(team.listTeam())
     return team
 }
 
@@ -53,10 +57,10 @@ function selectEvent(){
             if(prompt("¿Desea planificar al equipo rival?\n1 - Sí\n2 - No") == "1"){              
                 let team1 = buildTeam(5, 1)
                 let team2 = buildTeam(5, 2)
-                alert("Equipo 1:\n" + team1.players.join("\n") + "\n\nVS\n\nEquipo 2:\n" + team2.players.join("\n"))
+                alert("Equipo 1:\n" + team1.listTeam() + "\n\nVS\nEquipo 2:\n" + team2.listTeam())
             } else {
                 let team1 = buildTeam(5, 1)
-                alert(team1.players.join("\n"))
+                alert(team1.listTeam())
             }
             break;
             
@@ -64,10 +68,10 @@ function selectEvent(){
             if(prompt("¿Desea planificar al equipo rival?\n1 - Sí\n2 - No") == "1"){               
                 let team1 = buildTeam(3, 1)
                 let team2 = buildTeam(3, 2)
-                alert("Equipo 1:\n" + team1.players.join("\n") + "\n\nVS\n\nEquipo 2:\n" + team2.players.join("\n"))
+                alert("Equipo 1:\n" + team1.listTeam() + "\n\nVS\nEquipo 2:\n" + team2.listTeam())
             } else {
                 let team1 = buildTeam(5, 1)
-                alert(team1.players.join("\n"))
+                alert(team1.listTeam())
             }
             break;
 
