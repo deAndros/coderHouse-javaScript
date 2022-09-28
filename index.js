@@ -1,4 +1,4 @@
-alert("Bienvenido a Andros Team Builder (ALFA version)!")
+alert("Bienvenido a AndrosTeam Builder (ALFA version)!")
 
 class Team {
     constructor(id, name, playerAmount){
