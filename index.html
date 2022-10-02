@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!--Hojas de estilo importadas-->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
@@ -14,48 +14,86 @@
     />
 
     <!--Hojas de estilo propias-->
-    <link
-      href="./index.css"
-      rel="stylesheet"
-    />
-    
+    <link href="./index.css" rel="stylesheet" />
+
     <title>Team Builder!</title>
   </head>
-  
-  <body>
 
+  <body>
     <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Andros Team Builder!</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-              <a class="nav-link" href="#">Fútbol</a>
-              <a class="nav-link" href="#">Basquet</a>
-              <a class="nav-link disabled">E-Sports</a>
-            </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Andros TeamBuilder!</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" href="#">Fútbol</a>
+            <a class="nav-link" href="#">Basquet</a>
+            <a class="nav-link disabled">E-Sports</a>
           </div>
         </div>
-      </nav>
+      </div>
+    </nav>
 
-    <button type="button" class="btn btn-primary">Primary</button>
-    <button type="button" class="btn btn-secondary">Secondary</button>
-    <button type="button" class="btn btn-success" id="success">Success</button>
-    <button type="button" class="btn btn-danger">Danger</button>
-    <button type="button" class="btn btn-warning">Warning</button>
-    <button type="button" class="btn btn-info">Info</button>
-    <button type="button" class="btn btn-light">Light</button>
-    <button type="button" class="btn btn-dark">Dark</button>
-    <button type="button" class="btn btn-link">Link</button>
+    <!--Pestañas para armado y configuración del equipo-->
+    <div class="mytabs">
+      <input type="radio" id="tabfree" name="mytabs" checked="checked">
+      <label for="tabfree">Generador</label>
+      <div class="tab">
+        <h6>Datos del Equipo</h4>
+        <form>
+          <table>
+            <tr>
+              <td>
+                <input type="text" placeholder="Nombre del equipo" id="teamName">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type="text" placeholder="Cantidad de jugadores que lo integran" id="playersAmount">
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+  
+      <input type="radio" id="tabsilver" name="mytabs">
+      <label for="tabsilver">Jugadores</label>
+      <div class="tab">
+        <h2>Silver</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </div>
+  
+      <input type="radio" id="tabgold" name="mytabs">
+      <label for="tabgold">Estilos</label>
+      <div class="tab">
+        <h2>Gold</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </div>        
+    </div>
+
+    <div>
+      <div class="fieldDiv">
+        <div class="striped" id="field"></div>
+      </div>
+    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
       crossorigin="anonymous"
     ></script>
-    <script src="./index.js"></script>
+    <!--<script src="./index.js"></script>-->
   </body>
 </html>
