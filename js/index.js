@@ -1,8 +1,11 @@
 import Team from "./classes/Team.class.js";
 import Player from "./classes/Player.class.js";
 
-//alert("Bienvenido a Andros TeamBuilder (ALFA version)!")
-let mainTeam;
+let mainTeam = []
+
+const teamForm = document.getElementById("teamForm")
+
+teamForm.addEventListener("submit", teamHandler);
 
 function buildTeam(teamName, teamSport, teamPlayerAmount) {
   let team = new Team(teamName, teamSport, teamPlayerAmount);
@@ -20,13 +23,13 @@ function buildTeam(teamName, teamSport, teamPlayerAmount) {
       team.addPlayer(player);
     }
   }
-  console.log(team.listTeam());
-  mainTeam = team;
-  return team;
+  console.log(team.listTeam())
+  mainTeam = team
+  return team
 }
 
-function buildField(e) {
-  e.preventDefault();
+function domPrinter(event) {
+  event.preventDefault();
   const selectPlayerAmount = document.getElementById("selectPlayerAmount");
   const chosenPlayerAmount = parseInt(
     selectPlayerAmount.options[selectPlayerAmount.selectedIndex].value
@@ -35,17 +38,17 @@ function buildField(e) {
 
   field.innerHTML = "";
 
-  for (let i = 1; i <= mainTeam.lenght(); i++) {
+  for (let i = 1; i <= mainTeam.length; i++) {
     field.innerHTML = `${field.innerHTML}
         <div class="player-${i}">
-        <img src="../assets/images/kit.png" alt="camiseta">
-        <input type="text" name="" id="">
+        <img src="../assets/images/footballKit.png" alt="camiseta">
         </div>`;
   }
 }
 
-function selectEvent(event) {
-  event.preventDefault();
+function teamHandler(submitEvent) {
+
+  submitEvent.preventDefault()
 
   //Obtengo los elementos del formulario y los almaceno en las variables "chosen"
   const inputTeamName = document.getElementById("inputTeamName");
@@ -54,32 +57,15 @@ function selectEvent(event) {
 
   const chosenTeamName = inputTeamName.value;
   const chosenSport = selectSport.options[selectSport.selectedIndex].value;
-  const chosenPlayerAmount =
-    selectPlayerAmount.options[selectPlayerAmount.selectedIndex].value;
+  const chosenPlayerAmount = selectPlayerAmount.options[selectPlayerAmount.selectedIndex].value;
 
-  console.log(inputTeamName.value);
-  console.log(chosenSport);
-  console.log(chosenPlayerAmount);
+  /*Intenté acceder a los elementos del formulario desde el evento submit pero se me dificulta porque los mismos están dentro de una tabla.
+  Por este motivo, opté por acceder a ellos directamente desde su ID
 
-  const team = buildTeam(chosenTeamName, chosenSport, chosenPlayerAmount);
-  alert(team.listTeam());
+  const chosenTeamName = submitEvent.target.children[0].innerHTML
+  const chosenSport = submitEvent.target.children[1]
+  const chosenPlayerAmount = submitEvent.target.children[2]*/
+
+  buildTeam(chosenTeamName, chosenSport, chosenPlayerAmount);
+  
 }
-
-const buttonBuild = document.getElementById("buttonBuild");
-console.log(buttonBuild);
-
-buttonBuild.addEventListener("click", buildField);
-// let inputTeamName = document.getElementById("inputTeamName")
-// let selectSport = document.getElementById("selectSport")
-// let selectPlayerAmount = document.getElementById("selectPlayerAmount")
-
-// let chosenTeamName = inputTeamName.value
-// let chosenSport = selectSport.options[selectSport.selectedIndex].value
-// let chosenPlayerAmount = selectPlayerAmount.options[selectPlayerAmount.selectedIndex].value
-
-// console.log(inputTeamName.value)
-// console.log(chosenSport)
-// console.log(chosenPlayerAmount)
-
-// let team = buildTeam(chosenTeamName, chosenSport, chosenPlayerAmount)
-// alert(team.listTeam())
