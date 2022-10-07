@@ -1,9 +1,11 @@
-alert("Bienvenido a Andros TeamBuilder (ALFA version)!")
+//alert("Bienvenido a Andros TeamBuilder (ALFA version)!")
+let mainTeam
 
 class Team {
-    constructor(id, name, playerAmount){
-        this.id = id
+    constructor(name, sport, playerAmount){
+        this.id = Math.floor(Math.random() * 100) + 1
         this.name = name
+        this.sport = sport
         this.playerAmount = playerAmount
         this.players = []
     }
@@ -21,18 +23,17 @@ class Team {
     }
 }
 
-function Player(name, teamId){
+function Player(name, teamName){
     this.name = name
-    this.teamId = teamId
+    this.teamName = teamName
 }
 
-function buildTeam(playerAmount, teamNumber){   
-    
-    let teamName = prompt("Ingrese el nombre del equipo " + teamNumber)    
-    let team = new Team(teamNumber, teamName, playerAmount)       
+function buildTeam(teamName, teamSport, teamPlayerAmount){   
+       
+    let team = new Team(teamName, teamSport, teamPlayerAmount)       
 
-    for(let i = 1; i<=playerAmount; i++){
-        let playerName = prompt("Ingrese el nombre del jugador " + i)       
+    for(let i = 1; i<=teamPlayerAmount; i++){
+        const playerName = prompt("Ingrese el nombre del jugador " + i)       
         
         //Valido que no puedan ingresarse caracteres numéricos utilizando expresiones regulares
         if(/\d/.test(playerName)){
@@ -40,45 +41,72 @@ function buildTeam(playerAmount, teamNumber){
             alert("No se admiten caracteres numéricos en los nombres de los jugadores")
             continue
         } else {
-            let player = new Player(playerName, teamNumber)
+            let player = new Player(playerName, teamName)
             team.addPlayer(player)
         }
     }   
     console.log(team.listTeam())
+    mainTeam = team
     return team
 }
 
-function selectEvent(){
-    let event = prompt("Seleccione qué tipo de evento desea planificar \n1 - Fútbol 5\n2 - Basquet (3v3)")
+function buildField(e) {
+    e.preventDefault();
+    const selectPlayerAmount = document.getElementById("selectPlayerAmount")
+    const chosenPlayerAmount = parseInt(selectPlayerAmount.options[selectPlayerAmount.selectedIndex].value);
+    const field = document.getElementById('field');
+    
+    field.innerHTML = '';
 
-    switch(event){
-
-        case("1"):
-            if(prompt("¿Desea planificar al equipo rival?\n1 - Sí\n2 - No") == "1"){              
-                let team1 = buildTeam(5, 1)
-                let team2 = buildTeam(5, 2)
-                alert("Equipo 1:\n" + team1.listTeam() + "\n\nVS\nEquipo 2:\n" + team2.listTeam())
-            } else {
-                let team1 = buildTeam(5, 1)
-                alert(team1.listTeam())
-            }
-            break;
-            
-        case("2"):
-            if(prompt("¿Desea planificar al equipo rival?\n1 - Sí\n2 - No") == "1"){               
-                let team1 = buildTeam(3, 1)
-                let team2 = buildTeam(3, 2)
-                alert("Equipo 1:\n" + team1.listTeam() + "\n\nVS\nEquipo 2:\n" + team2.listTeam())
-            } else {
-                let team1 = buildTeam(5, 1)
-                alert(team1.listTeam())
-            }
-            break;
-
-        default:
-            alert("La opción ingresada no se encuentra disponible, por favor ingrese otra")
-            selectEvent()
+    for (let i = 1; i <= mainTeam.lenght(); i++) {
+        field.innerHTML = `${field.innerHTML}
+        <div class="player-${i}">
+        <img src="./assets/images/kit.png" alt="camiseta">
+        <input type="text" name="" id="">
+        </div>`
     }
+
 }
 
-selectEvent()
+function selectEvent(event){
+
+    event.preventDefault()
+
+    //Obtengo los elementos del formulario y los almaceno en las variables "chosen"
+    const inputTeamName = document.getElementById("inputTeamName")
+    const selectSport = document.getElementById("selectSport")
+    const selectPlayerAmount = document.getElementById("selectPlayerAmount")
+
+    const chosenTeamName = inputTeamName.value
+    const chosenSport = selectSport.options[selectSport.selectedIndex].value
+    const chosenPlayerAmount = selectPlayerAmount.options[selectPlayerAmount.selectedIndex].value
+    
+    console.log(inputTeamName.value)
+    console.log(chosenSport)
+    console.log(chosenPlayerAmount)
+
+    const team = buildTeam(chosenTeamName, chosenSport, chosenPlayerAmount)
+    alert(team.listTeam())
+}
+
+const buttonBuild = document.getElementById("buttonBuild")
+console.log(buttonBuild)
+
+buttonBuild.addEventListener("click", buildField)
+    // let inputTeamName = document.getElementById("inputTeamName")
+    // let selectSport = document.getElementById("selectSport")
+    // let selectPlayerAmount = document.getElementById("selectPlayerAmount")
+
+    // let chosenTeamName = inputTeamName.value
+    // let chosenSport = selectSport.options[selectSport.selectedIndex].value
+    // let chosenPlayerAmount = selectPlayerAmount.options[selectPlayerAmount.selectedIndex].value
+    
+    // console.log(inputTeamName.value)
+    // console.log(chosenSport)
+    // console.log(chosenPlayerAmount)
+
+    // let team = buildTeam(chosenTeamName, chosenSport, chosenPlayerAmount)
+    // alert(team.listTeam())
+
+
+
