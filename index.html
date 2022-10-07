@@ -14,7 +14,7 @@
     />
 
     <!--Hojas de estilo propias-->
-    <link href="./index.css" rel="stylesheet" />
+    <link href="./styles/index.css" rel="stylesheet" />
 
     <title>TeamBuilder!</title>
   </head>
@@ -46,11 +46,10 @@
     </nav>
 
     <div class="mainContainer">
-
       <!--Pestañas para armado y configuración del equipo-->
       <div class="column">
         <div class="mytabs">
-          <input type="radio" id="tabfree" name="mytabs" checked="checked">
+          <input type="radio" id="tabfree" name="mytabs" checked="checked" />
           <label for="tabfree">Equipo</label>
           <div class="tab">
             <form>
@@ -58,7 +57,11 @@
                 <tr>
                   <td>
                     <div class="divFormLabel">Nombre del equipo</div>
-                    <input type="text" id="inputTeamName" placeholder="Nombre del equipo" >
+                    <input
+                      type="text"
+                      id="inputTeamName"
+                      placeholder="Nombre del equipo"
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -73,7 +76,11 @@
                 <tr>
                   <td>
                     <div class="divFormLabel">Cantidad de jugadores</div>
-                    <select id="selectPlayerAmount" name="selectPlayerAmount" role="option">
+                    <select
+                      id="selectPlayerAmount"
+                      name="selectPlayerAmount"
+                      role="option"
+                    >
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -96,32 +103,48 @@
               </table>
             </form>
           </div>
-        
-          <input type="radio" id="tabsilver" name="mytabs">
+
+          <input type="radio" id="tabsilver" name="mytabs" />
           <label for="tabsilver">Jugadores</label>
           <div class="tab">
             <h2>Silver</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur.
+            </p>
           </div>
-      
-          <input type="radio" id="tabgold" name="mytabs">
+
+          <input type="radio" id="tabgold" name="mytabs" />
           <label for="tabgold">Estilos</label>
           <div class="tab">
             <h2>Gold</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-          </div>        
-        </div>
-      </div>
-      
-      <!--Cancha-->
-      <div class="column">
-        <div class="fieldDiv">
-          <div class="striped" id="field">            
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur.
+            </p>
           </div>
         </div>
       </div>
-      
+
+      <!--Cancha-->
+      <div class="column">
+        <div class="fieldDiv">
+          <div class="striped" id="field"></div>
+        </div>
+      </div>
     </div>
 
     <script
@@ -129,6 +152,6 @@
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
       crossorigin="anonymous"
     ></script>
-    <script src="./index.js"></script>
+    <script type="module" src="./js/index.js"></script>
   </body>
 </html>

@@ -1,11 +1,11 @@
 body {
-  background-image: url('https://wallpapercave.com/wp/wp2033589.jpg');      
+  background-image: url("https://wallpapercave.com/wp/wp2033589.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
   font-size: 14px;
   background-color: #f5f5f5;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -54,7 +54,7 @@ body {
 /*Cancha*/
 #field.striped {
   position: relative;
-  background: url("./assets/images/imagen\ cancha.png");
+  background: url("../assets/images/imagen\ cancha.png");
   background-size: 480px 600px;
   border-radius: 10px;
   border-color: #f5f5f5;
@@ -95,7 +95,7 @@ body {
   font-size: 3em;
 }
 
-.mytabs input[type='radio']:checked + label + .tab {
+.mytabs input[type="radio"]:checked + label + .tab {
   display: block;
 }
 
@@ -104,7 +104,7 @@ body {
 }
 
 /*Estilos de los formularios*/
-.divFormLabel{
+.divFormLabel {
   font-size: 14px;
   width: 90%;
   margin-top: 10px;
@@ -149,7 +149,7 @@ tr {
   display: table-row;
 }
 
-select{
+select {
   cursor: default;
   border-spacing: 0;
   border-collapse: separate;
@@ -165,14 +165,13 @@ select{
   white-space: nowrap;
 }
 
-
 /*Contenedores principales*/
 .column {
   float: left;
   width: 50%;
 }
 
-.mainContainer{
+.mainContainer {
   margin-top: 4%;
 }
 
@@ -193,7 +192,7 @@ select{
   margin-bottom: 5px;
   text-align: center;
   border-radius: 5px;
-  transition: background-color .2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
   width: 220px;
   background-color: #3ea055;
   color: #fff;
