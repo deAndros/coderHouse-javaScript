@@ -19,17 +19,19 @@ function printFieldPlayers(team) {
 function printPlayersTabContent(team) {
   const playersTabContent = document.getElementById("playersTabContent");
 
+  //Construyo la tabla con el número y el nombre de cada jugador
   for (let i = 1; i <= team.players.length; i++) {
-    //Construyo la tabla con el número y el nombre de cada jugador
+    //Columa con el número de dorsal
     let shirtNumberColumn = playersTabContent.getElementsByTagName("div")[0];
     shirtNumberColumn.innerHTML = `${shirtNumberColumn.innerHTML}
             <input
             type="number"
-            id="playerNumber${i}"
+            id="inputPlayerNumber${i}"
             class="inputPlayerNumber"
             value="${team.players[i - 1].shirtNumber}"
             />`;
 
+    //Columa con el nombre del jugador
     let playerNameColumn = playersTabContent.getElementsByTagName("div")[1];
     playerNameColumn.innerHTML = `${playerNameColumn.innerHTML}
             <input
@@ -41,4 +43,47 @@ function printPlayersTabContent(team) {
   }
 }
 
-export { printFieldPlayers, printPlayersTabContent };
+function updateFieldPlayerNumber(i) {
+  //Obtengo el nuevo valor
+  let newValue = document.getElementById("inputPlayerNumber" + i);
+  console.log(newValue);
+}
+
+function addEventListenersToPlayersTabInputs() {
+  console.log(
+    document
+      .getElementById("playersTabContent")
+      .getElementsByTagName("div")[0]
+      .getElementsByTagName("input")
+  );
+
+  let shirtNumberColumnElements;
+  let playerNameColumnElements;
+
+  shirtNumberColumnElements = document
+    .getElementById("playersTabContent")
+    .getElementsByTagName("div")[0]
+    .getElementsByTagName("input");
+
+  playerNameColumnElements = document
+    .getElementById("playersTabContent")
+    .getElementsByTagName("div")[1]
+    .getElementsByTagName("input");
+
+  for (let i = 0; i < shirtNumberColumnElements.length; i++) {
+    shirtNumberColumnElements[i].addEventListener("change", () =>
+      updateFieldPlayerNumber(i)
+    );
+
+    /*playerNameColumnElements[i].addEventListener(
+      "change",
+      updateFieldPlayerName
+    );*/
+  }
+}
+
+export {
+  printFieldPlayers,
+  printPlayersTabContent,
+  addEventListenersToPlayersTabInputs,
+};
