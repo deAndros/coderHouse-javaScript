@@ -1,13 +1,13 @@
 import Team from "./classes/Team.class.js";
 import Player from "./classes/Player.class.js";
+import {
+  printFieldPlayers,
+  printPlayersTabContent,
+} from "./auxFunctions/domPrinter.js";
 
 let mainTeam = [];
 
 const teamForm = document.getElementById("teamForm");
-
-const buttonBuild = document.getElementById("buttonBuild");
-
-console.log(buttonBuild);
 
 teamForm.addEventListener("submit", teamHandler);
 
@@ -35,44 +35,6 @@ function buildTeam(teamName, teamSport, teamPlayerAmount) {
   return team;
 }
 
-function domPrinter(team) {
-  const field = document.getElementById("field");
-  const playersTabContent = document.getElementById("playersTabContent");
-
-  field.innerHTML = "";
-
-  for (let i = 1; i <= team.players.length; i++) {
-    //Agrego los jugadores al campo de juego
-    field.innerHTML = `${field.innerHTML}
-        <div class="player-${i}">
-          <img src="../assets/images/footballKit.png" alt="camiseta">
-          </br>
-          <input class="playerFieldInput" id="player-${i}" value="${
-      team.players[i - 1].name
-    }">
-        </div>`;
-
-    //Construyo la tabla con el detalle de los jugadores en la tab "jugadores"
-    let shirtNumberColumn = playersTabContent.getElementsByTagName("div")[0];
-    shirtNumberColumn.innerHTML = `${shirtNumberColumn.innerHTML}
-      <input
-        type="number"
-        id="playerNumber${i}"
-        class="inputPlayerNumber"
-        value="${team.players[i - 1].shirtNumber}"
-      />`;
-
-    let playerNameColumn = playersTabContent.getElementsByTagName("div")[1];
-    playerNameColumn.innerHTML = `${playerNameColumn.innerHTML}
-      <input
-        type="text"
-        id="inputPlayerName${i}"
-        class="inputPlayerName"
-        value="${team.players[i - 1].name}"
-      />`;
-  }
-}
-
 function teamHandler(submitEvent) {
   submitEvent.preventDefault();
 
@@ -95,5 +57,6 @@ function teamHandler(submitEvent) {
   const chosenPlayerAmount = submitEvent.target.children[2]*/
 
   buildTeam(chosenTeamName, chosenSport, chosenPlayerAmount);
-  domPrinter(mainTeam);
+  printFieldPlayers(mainTeam);
+  printPlayersTabContent(mainTeam);
 }
