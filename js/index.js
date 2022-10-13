@@ -27,11 +27,11 @@ function buildTeam(teamName, teamSport, teamPlayerAmount) {
       continue;
     } else {
       let player = new Player(playerName, teamName, i);
-      console.log(player);
+      //console.log(player);
       team.addPlayer(player);
     }
   }
-  console.log(team.listTeam());
+  //console.log(team.listTeam());
   mainTeam = team;
   return team;
 }
@@ -62,20 +62,8 @@ function teamHandler(submitEvent) {
   printPlayersTabContent(mainTeam);
 }
 
-const ovserver = new MutationObserver((mutations) => {
-  console.log("ENTRÓ" + mutations);
-});
-
 /*TODO: Buscar una manera de capturar los cambios que ocurran en la Tab de jugadores para reflejarlos en el campo. 
 El problema es que al no tener una cantidad fija en la lista de jugadores, no puedo traerme el agregar un event listener únicamente para aquellos que se están mostrando. 
 Probé con mutation observer pero no logré resolverlo aún*/
-ovserver.observe(
-  document.getElementById("playersTabContent").getElementsByTagName("div")[1],
-  {
-    value: true,
-    childList: true,
-    subtree: true,
-  }
-);
 
 addEventListenersToPlayersTabInputs();

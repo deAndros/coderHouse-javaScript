@@ -31,7 +31,7 @@ function printPlayersTabContent(team) {
             value="${team.players[i - 1].shirtNumber}"
             />`;
 
-    //Columa con el nombre del jugador
+    //Columna con el nombre del jugador
     let playerNameColumn = playersTabContent.getElementsByTagName("div")[1];
     playerNameColumn.innerHTML = `${playerNameColumn.innerHTML}
             <input
@@ -45,8 +45,8 @@ function printPlayersTabContent(team) {
 
 function updateFieldPlayerNumber(i) {
   //Obtengo el nuevo valor
+  console.log("ENTRÓ");
   let newValue = document.getElementById("inputPlayerNumber" + i);
-  console.log(newValue);
 }
 
 function addEventListenersToPlayersTabInputs() {
@@ -71,6 +71,7 @@ function addEventListenersToPlayersTabInputs() {
     .getElementsByTagName("input");
 
   for (let i = 0; i < shirtNumberColumnElements.length; i++) {
+    console.log(shirtNumberColumnElements[i]);
     shirtNumberColumnElements[i].addEventListener("change", () =>
       updateFieldPlayerNumber(i)
     );
