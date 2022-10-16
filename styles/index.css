@@ -108,15 +108,15 @@ body {
 .player-11 > img {
   width: 14%;
 }
-.playerFieldInput{
+.playerFieldInput {
   width: 14%;
   background: transparent;
   border: none;
   text-align: center;
   font-weight: 700;
   color: #fff;
-  font-size: .8rem;
-  letter-spacing: .2px;
+  font-size: 0.8rem;
+  letter-spacing: 0.2px;
   text-shadow: 1px 1px 1px #000;
   height: 20px;
 }
@@ -175,7 +175,7 @@ body {
 }
 
 /*Estilos de los formularios*/
-.divFormLabel {
+.form-label {
   font-size: 14px;
   width: 90%;
   margin-top: 10px;
@@ -239,19 +239,19 @@ select {
 }
 
 /*Estilos de pestaña de jugadores*/
-.shirtNumberColumn{
-  width: 50px; 
-  background-color: blue; 
+.shirtNumberColumn {
+  width: 50px;
+  background-color: blue;
   float: left;
 }
-.playerNameColumn{
-  width: 335px; 
-  background-color: red; 
+.playerNameColumn {
+  width: 335px;
+  background-color: red;
   float: right;
 }
-.inputPlayerNumber{
-  box-sizing:border-box;
-  margin:auto 0 5px;
+.inputPlayerNumber {
+  box-sizing: border-box;
+  margin: auto 0 5px;
   width: inherit;
   writing-mode: horizontal-tb !important;
   text-rendering: auto;
@@ -283,9 +283,9 @@ select {
   height: 30px;
 }
 
-.inputPlayerName{
-  box-sizing:border-box;
-  margin:auto 0 5px;
+.inputPlayerName {
+  box-sizing: border-box;
+  margin: auto 0 5px;
   width: inherit;
   writing-mode: horizontal-tb !important;
   text-rendering: auto;
@@ -316,7 +316,6 @@ select {
   border-radius: 5px;
   border: 2px solid;
 }
-
 
 /*Contenedores principales*/
 .column {
@@ -324,18 +323,18 @@ select {
   width: 45%;
 }
 
-.mainContainer {
+.main-container {
   margin-top: 4%;
 }
 
-.mainContainer:after {
+.main-container:after {
   content: "";
   display: table;
   clear: both;
 }
 
 /*Estilo de los botones*/
-.buttonBuild {
+.build-button {
   padding: 12px;
   padding-top: 9px;
   padding-bottom: 9px;

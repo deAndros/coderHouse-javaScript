@@ -1,6 +1,5 @@
 export default class Team {
   constructor(name, sport, playerAmount) {
-    this.id = Math.floor(Math.random() * 100) + 1;
     this.name = name;
     this.sport = sport;
     this.playerAmount = playerAmount;

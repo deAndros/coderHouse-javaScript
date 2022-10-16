@@ -2,7 +2,7 @@ import Team from "./classes/Team.class.js";
 import Player from "./classes/Player.class.js";
 import {
   printFieldPlayers,
-  printPlayersTabContent,
+  printplayersTab,
   addEventListenersToPlayersTabInputs,
 } from "./auxFunctions/domPrinter.js";
 
@@ -26,12 +26,12 @@ function buildTeam(teamName, teamSport, teamPlayerAmount) {
       );
       continue;
     } else {
-      let player = new Player(playerName, teamName, i);
-      //console.log(player);
+      let player = new Player(i, playerName, teamName, i);
+
       team.addPlayer(player);
     }
   }
-  //console.log(team.listTeam());
+
   mainTeam = team;
   return team;
 }
@@ -59,11 +59,10 @@ function teamHandler(submitEvent) {
 
   buildTeam(chosenTeamName, chosenSport, chosenPlayerAmount);
   printFieldPlayers(mainTeam);
-  printPlayersTabContent(mainTeam);
+  printplayersTab(mainTeam);
+  addEventListenersToPlayersTabInputs();
 }
 
 /*TODO: Buscar una manera de capturar los cambios que ocurran en la Tab de jugadores para reflejarlos en el campo. 
 El problema es que al no tener una cantidad fija en la lista de jugadores, no puedo traerme el agregar un event listener únicamente para aquellos que se están mostrando. 
 Probé con mutation observer pero no logré resolverlo aún*/
-
-addEventListenersToPlayersTabInputs();

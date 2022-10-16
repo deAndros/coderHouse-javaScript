@@ -1,5 +1,6 @@
 export default class Player {
-  constructor(name, teamName, shirtNumber) {
+  constructor(id, name, teamName, shirtNumber) {
+    this.id = id;
     this.name = name;
     this.teamName = teamName;
     this.shirtNumber = parseInt(shirtNumber);
