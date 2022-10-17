@@ -1,12 +1,15 @@
-function printFieldPlayers(team) {
-  const field = document.getElementById("field");
+const field = document.getElementById("field");
 
+//Función que renderiza a los jugadores en el campo de juego
+function renderFieldPlayers(team) {
   field.innerHTML = "";
 
   for (let i = 1; i <= team.players.length; i++) {
-    //Agrego los jugadores al campo de juego
     field.innerHTML = `${field.innerHTML}
-            <div class="player-${i}">
+            <div class="player-${i}" draggable="true">
+                <span id="player-${i}-field-number">${
+      team.players[i - 1].shirtNumber
+    }</span>
                 <img src="../assets/images/footballKit.png" alt="camiseta">
                 </br>
                 <input class="playerFieldInput" id="player-${i}-field-input" value="${
@@ -16,7 +19,7 @@ function printFieldPlayers(team) {
   }
 }
 
-function printplayersTab(team) {
+function renderPlayersTab(team) {
   const playersTab = document.getElementById("playersTab");
 
   //Construyo la tabla con el número y el nombre de cada jugador
@@ -38,55 +41,48 @@ function printplayersTab(team) {
             type="text"
             id="inputPlayerName${i}"
             class="inputPlayerName"
+            placeholder="click to edit"
             value="${team.players[i - 1].name}"
             />`;
   }
+
+  addEventListenersToPlayersTabInputs(team);
 }
 
-function updateFieldPlayerName(i) {
-  //Obtengo el nuevo valor
+const shirtNumberColumnElements = document
+  .getElementById("playersTab")
+  .getElementsByTagName("div")[0]
+  .getElementsByTagName("input");
 
-  let playerNameColumnElements = document
-    .getElementById("playersTab")
-    .getElementsByTagName("div")[1]
-    .getElementsByTagName("input");
+const playerNameColumnElements = document
+  .getElementById("playersTab")
+  .getElementsByTagName("div")[1]
+  .getElementsByTagName("input");
 
-  let newName = playerNameColumnElements[i].value;
-  console.log(newName);
-  console.log(`player-${i + 1}-field-input`);
-  let fieldPlayer = document.getElementById(`player-${i + 1}-field-input`);
-  fieldPlayer.value = newName;
-}
-
-function addEventListenersToPlayersTabInputs() {
-  //let shirtNumberColumnElements;
-  let playerNameColumnElements = document
-    .getElementById("playersTab")
-    .getElementsByTagName("div")[1]
-    .getElementsByTagName("input");
-
-  /*shirtNumberColumnElements = document
-    .getElementById("playersTab")
-    .getElementsByTagName("div")[0]
-    .getElementsByTagName("input");*/
-
+function addEventListenersToPlayersTabInputs(team) {
   for (let i = 0; i < playerNameColumnElements.length; i++) {
-    console.log(playerNameColumnElements[i]);
-    //console.log(playerNameColumnElements[i]);
-
-    playerNameColumnElements[i].addEventListener("change", () =>
-      updateFieldPlayerName(i)
+    shirtNumberColumnElements[i].addEventListener("change", () =>
+      updateFieldPlayer(i, "SHIRT NUMBER", team)
     );
 
-    /*playerNameColumnElements[i].addEventListener(
-      "change",
-      updateFieldPlayerName
-    );*/
+    playerNameColumnElements[i].addEventListener("change", () =>
+      updateFieldPlayer(i, "PLAYER NAME", team)
+    );
   }
 }
 
-export {
-  printFieldPlayers,
-  printplayersTab,
-  addEventListenersToPlayersTabInputs,
-};
+function updateFieldPlayer(i, modifiedElement, team) {
+  if (modifiedElement === "PLAYER NAME") {
+    let newName = playerNameColumnElements[i].value;
+    let fieldPlayer = document.getElementById(`player-${i + 1}-field-input`);
+    fieldPlayer.value = newName;
+    team.players[i].name = newName;
+  } else {
+    let newNumber = shirtNumberColumnElements[i].value;
+    let fieldPlayer = document.getElementById(`player-${i + 1}-field-number`);
+    fieldPlayer.innerText = newNumber;
+    team.players[i].shirtNumber = parseInt(newNumber);
+  }
+}
+
+export { renderFieldPlayers, renderPlayersTab };
