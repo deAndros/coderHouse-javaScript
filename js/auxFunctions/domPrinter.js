@@ -2,7 +2,7 @@ import { saveTeam } from "./storageHandler.js";
 import {
   addEventListenersToFieldPlayers,
   addEventListenersToPlayersTab,
-} from "./eventHandler.js";
+} from "./eventAdder.js";
 
 const field = document.getElementById("field");
 
@@ -27,6 +27,7 @@ function renderFieldPlayers(team) {
   addEventListenersToFieldPlayers(field);
 }
 
+//Función que renderiza a los jugadores en la tab de jugadores
 function renderPlayersTab(team) {
   const playersTab = document.getElementById("playersTab");
 
@@ -107,9 +108,11 @@ function updatePlayer(i, modifiedElement, team) {
     team.players[i].shirtNumber = parseInt(newNumber);
   } else {
     //Borro al jugador del equipo
-    //TODO: Falta hacer que el jugador se borre de la tab de jugadores y del campo de juego
     let deletedPlayer = team.players[i];
     team = team.deletePlayer(deletedPlayer);
+    //Vuelvo a renderizar la tab y la cancha sin el jugador borrado
+    renderFieldPlayers(team);
+    renderPlayersTab(team);
   }
   saveTeam(team);
 }
