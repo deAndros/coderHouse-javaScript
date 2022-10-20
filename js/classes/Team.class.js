@@ -1,13 +1,21 @@
 export default class Team {
-  constructor(name, sport, playerAmount) {
+  constructor(name, sport) {
     this.name = name;
     this.sport = sport;
-    this.playerAmount = playerAmount;
     this.players = [];
   }
 
   addPlayer(player) {
     this.players.push(player);
+    return this;
+  }
+
+  deletePlayer(player) {
+    let deletedPlayerId = player.id;
+    this.players = this.players.filter(
+      (player) => player.id != deletedPlayerId
+    );
+    return this;
   }
 
   listTeam() {

@@ -61,6 +61,7 @@
                       type="text"
                       id="inputTeamName"
                       placeholder="Nombre del equipo"
+                      required
                     />
                   </td>
                 </tr>
@@ -111,8 +112,9 @@
           <input type="radio" id="tabsilver" name="mytabs" />
           <label for="tabsilver">Jugadores</label>
           <div class="tab" id="playersTab">
-            <div class="shirtNumberColumn"></div>
-            <div class="playerNameColumn"></div>
+            <div class="shirt-number-column"></div>
+            <div class="player-name-column"></div>
+            <div class="delete-icon-column"></div>
           </div>
 
           <input type="radio" id="tabgold" name="mytabs" />
@@ -130,6 +132,8 @@
         </div>
       </div>
     </div>
+
+    <!--<div class="draggable">Draggable Element</div>-->
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"

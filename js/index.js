@@ -4,14 +4,15 @@ import {
   renderFieldPlayers,
   renderPlayersTab,
 } from "./auxFunctions/domPrinter.js";
+import { saveTeam } from "./auxFunctions/storageHandler.js";
+
+//TODO Ver la clase 11 para preparar el proyecto para su entrega (Workshop)
+//TODO Ver la clase 12 para aplicar sugar syntax y simplificaciones al proyecto
 
 let mainTeam;
 
-const teamForm = document.getElementById("teamForm");
-teamForm.addEventListener("submit", teamHandler);
-
 function buildTeam(teamName, teamSport, teamPlayerAmount) {
-  let team = new Team(teamName, teamSport, teamPlayerAmount);
+  let team = new Team(teamName, teamSport);
 
   for (let i = 1; i <= teamPlayerAmount; i++) {
     let player = new Player(i, "", teamName, i);
@@ -25,9 +26,12 @@ function buildTeam(teamName, teamSport, teamPlayerAmount) {
 const inputTeamName = document.getElementById("inputTeamName");
 const selectSport = document.getElementById("selectSport");
 const selectPlayerAmount = document.getElementById("selectPlayerAmount");
+const teamForm = document.getElementById("teamForm");
+teamForm.addEventListener("submit", submitTeamHandler);
 
-function teamHandler(submitEvent) {
+function submitTeamHandler(submitEvent) {
   submitEvent.preventDefault();
+  mainTeam = [];
 
   //Obtengo los elementos del formulario y los almaceno en las variables "chosen"
   const chosenTeamName = inputTeamName.value;
@@ -39,4 +43,23 @@ function teamHandler(submitEvent) {
   buildTeam(chosenTeamName, chosenSport, chosenPlayerAmount);
   renderFieldPlayers(mainTeam);
   renderPlayersTab(mainTeam);
+  saveTeam(mainTeam);
 }
+
+/*TODO: Implementar Drag and Drop
+
+const position = { x: 0, y: 0 };
+
+interact(".draggable").draggable({
+  listeners: {
+    start(event) {
+      console.log(event.type, event.target);
+    },
+    move(event) {
+      position.x += event.dx;
+      position.y += event.dy;
+
+      event.target.style.transform = `translate(${position.x}px, ${position.y}px)`;
+    },
+  },
+});*/

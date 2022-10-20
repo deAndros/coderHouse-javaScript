@@ -362,14 +362,17 @@ select {
 }
 
 /*Estilos de pestaña de jugadores*/
-.shirtNumberColumn {
+.shirt-number-column {
   width: 50px;
-  background-color: blue;
   float: left;
 }
-.playerNameColumn {
-  width: 335px;
-  background-color: red;
+.player-name-column {
+  width: 300px;
+  float: left;
+  margin-left: 10px;
+}
+.delete-icon-column {
+  width: 50px;
   float: right;
 }
 .inputPlayerNumber {
@@ -440,6 +443,14 @@ select {
   border: 2px solid;
 }
 
+.delete-player-button {
+  margin-top: 8px;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
 /*Contenedores principales*/
 .column {
   float: left;
@@ -475,3 +486,15 @@ select {
   font-size: 16px;
   display: inline-block;
 }
+
+/*.draggable {
+  width: 25%;
+  min-height: 6.5em;
+  margin: 1rem 0 0 1rem;
+  background-color: #29e;
+  color: white;
+  border-radius: 0.75em;
+  padding: 4%;
+  touch-action: none;
+  user-select: none;
+}*/

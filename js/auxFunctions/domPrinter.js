@@ -1,3 +1,9 @@
+import { saveTeam } from "./storageHandler.js";
+import {
+  addEventListenersToFieldPlayers,
+  addEventListenersToPlayersTab,
+} from "./eventHandler.js";
+
 const field = document.getElementById("field");
 
 //Función que renderiza a los jugadores en el campo de juego
@@ -17,25 +23,36 @@ function renderFieldPlayers(team) {
     }">
             </div>`;
   }
+
+  addEventListenersToFieldPlayers(field);
 }
 
 function renderPlayersTab(team) {
   const playersTab = document.getElementById("playersTab");
 
+  const shirtNumberColumn = playersTab.getElementsByTagName("div")[0];
+  shirtNumberColumn.innerHTML = "";
+
+  const playerNameColumn = playersTab.getElementsByTagName("div")[1];
+  playerNameColumn.innerHTML = "";
+
+  const deletePlayerColumn = playersTab.getElementsByTagName("div")[2];
+  deletePlayerColumn.innerHTML = "";
+
   //Construyo la tabla con el número y el nombre de cada jugador
   for (let i = 1; i <= team.players.length; i++) {
     //Columa con el número de dorsal
-    let shirtNumberColumn = playersTab.getElementsByTagName("div")[0];
     shirtNumberColumn.innerHTML = `${shirtNumberColumn.innerHTML}
             <input
             type="number"
+            min="1" 
+            max="99"
             id="inputPlayerNumber${i}"
             class="inputPlayerNumber"
             value="${team.players[i - 1].shirtNumber}"
             />`;
 
     //Columna con el nombre del jugador
-    let playerNameColumn = playersTab.getElementsByTagName("div")[1];
     playerNameColumn.innerHTML = `${playerNameColumn.innerHTML}
             <input
             type="text"
@@ -44,9 +61,17 @@ function renderPlayersTab(team) {
             placeholder="click to edit"
             value="${team.players[i - 1].name}"
             />`;
+
+    //Columna con el nombre del jugador
+    deletePlayerColumn.innerHTML = `${deletePlayerColumn.innerHTML}
+            <img
+            src="../assets/images/MinusIcon.png"
+            id="playerDeleteButton${i}"
+            class="delete-player-button"
+            />`;
   }
 
-  addEventListenersToPlayersTabInputs(team);
+  addEventListenersToPlayersTab(team);
 }
 
 const shirtNumberColumnElements = document
@@ -59,30 +84,34 @@ const playerNameColumnElements = document
   .getElementsByTagName("div")[1]
   .getElementsByTagName("input");
 
-function addEventListenersToPlayersTabInputs(team) {
-  for (let i = 0; i < playerNameColumnElements.length; i++) {
-    shirtNumberColumnElements[i].addEventListener("change", () =>
-      updateFieldPlayer(i, "SHIRT NUMBER", team)
-    );
-
-    playerNameColumnElements[i].addEventListener("change", () =>
-      updateFieldPlayer(i, "PLAYER NAME", team)
-    );
-  }
-}
-
-function updateFieldPlayer(i, modifiedElement, team) {
+function updatePlayer(i, modifiedElement, team) {
   if (modifiedElement === "PLAYER NAME") {
     let newName = playerNameColumnElements[i].value;
-    let fieldPlayer = document.getElementById(`player-${i + 1}-field-input`);
-    fieldPlayer.value = newName;
+    let fieldPlayerNameInput = document.getElementById(
+      `player-${i + 1}-field-input`
+    );
+
+    //Actualizo el nombre en el campo de juego
+    fieldPlayerNameInput.value = newName;
+    //Actualizo el nombre del jugador accediendo desde el arreglo del equipo
     team.players[i].name = newName;
-  } else {
+  } else if (modifiedElement === "SHIRT NUMBER") {
     let newNumber = shirtNumberColumnElements[i].value;
-    let fieldPlayer = document.getElementById(`player-${i + 1}-field-number`);
-    fieldPlayer.innerText = newNumber;
+    let fieldPlayerShirtNumberSpan = document.getElementById(
+      `player-${i + 1}-field-number`
+    );
+
+    //Actualizo el número de camiseta en el campo de juego
+    fieldPlayerShirtNumberSpan.innerText = newNumber;
+    //Actualizo el número de camiseta del jugador accediendo desde el arreglo del equipo
     team.players[i].shirtNumber = parseInt(newNumber);
+  } else {
+    //Borro al jugador del equipo
+    //TODO: Falta hacer que el jugador se borre de la tab de jugadores y del campo de juego
+    let deletedPlayer = team.players[i];
+    team = team.deletePlayer(deletedPlayer);
   }
+  saveTeam(team);
 }
 
-export { renderFieldPlayers, renderPlayersTab };
+export { renderFieldPlayers, renderPlayersTab, updatePlayer };
