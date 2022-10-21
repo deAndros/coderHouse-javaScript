@@ -9,7 +9,7 @@ import { saveTeam } from "./auxFunctions/storageHandler.js";
 //TODO Ver la clase 11 para preparar el proyecto para su entrega (Workshop)
 //TODO Ver la clase 12 para aplicar sugar syntax y simplificaciones al proyecto
 
-let mainTeam;
+let mainTeam = undefined;
 
 function buildTeam(teamName, teamSport, teamPlayerAmount) {
   let team = new Team(teamName, teamSport);
@@ -19,19 +19,35 @@ function buildTeam(teamName, teamSport, teamPlayerAmount) {
 
     team.addPlayer(player);
   }
-
   mainTeam = team;
+}
+
+function loadTeam() {
+  mainTeam = JSON.parse(localStorage.getItem("mainTeam")) || undefined;
+
+  if (!mainTeam) {
+    console.log("No hay ningún equipo guardado");
+  } else {
+    renderFieldPlayers(mainTeam);
+    renderPlayersTab(mainTeam);
+  }
+
+  console.log(mainTeam);
 }
 
 const inputTeamName = document.getElementById("inputTeamName");
 const selectSport = document.getElementById("selectSport");
 const selectPlayerAmount = document.getElementById("selectPlayerAmount");
 const teamForm = document.getElementById("teamForm");
+const loadTeamButton = document.getElementById("loadTeamButton");
+
+loadTeamButton.addEventListener("click", loadTeam);
+
 teamForm.addEventListener("submit", submitTeamHandler);
 
 function submitTeamHandler(submitEvent) {
   submitEvent.preventDefault();
-  mainTeam = [];
+  mainTeam = undefined;
 
   //Obtengo los elementos del formulario y los almaceno en las variables "chosen"
   const chosenTeamName = inputTeamName.value;

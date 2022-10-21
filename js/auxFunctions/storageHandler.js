@@ -1,5 +1,5 @@
 function saveTeam(team) {
-  localStorage.setItem(team, JSON.stringify(team));
+  localStorage.setItem("mainTeam", JSON.stringify(team));
 }
 
 export { saveTeam };

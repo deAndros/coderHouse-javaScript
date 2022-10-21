@@ -468,7 +468,7 @@ select {
 }
 
 /*Estilo de los botones*/
-.build-button {
+.form-button {
   padding: 12px;
   padding-top: 9px;
   padding-bottom: 9px;
@@ -479,7 +479,7 @@ select {
   text-align: center;
   border-radius: 5px;
   transition: background-color 0.2s ease-in-out;
-  width: 220px;
+  width: 130px;
   background-color: #3ea055;
   color: #fff;
   border: none;
