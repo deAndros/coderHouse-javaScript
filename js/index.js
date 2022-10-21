@@ -23,16 +23,15 @@ function buildTeam(teamName, teamSport, teamPlayerAmount) {
 }
 
 function loadTeam() {
-  mainTeam = JSON.parse(localStorage.getItem("mainTeam")) || undefined;
-
-  if (!mainTeam) {
+  let team = JSON.parse(localStorage.getItem("mainTeam")) || undefined;
+  if (!team) {
     console.log("No hay ningún equipo guardado");
-  } else {
-    renderFieldPlayers(mainTeam);
-    renderPlayersTab(mainTeam);
+    return;
   }
 
-  console.log(mainTeam);
+  mainTeam = new Team(team.teamName, team.teamSport, team.players);
+  renderFieldPlayers(mainTeam);
+  renderPlayersTab(mainTeam);
 }
 
 const inputTeamName = document.getElementById("inputTeamName");
@@ -42,7 +41,6 @@ const teamForm = document.getElementById("teamForm");
 const loadTeamButton = document.getElementById("loadTeamButton");
 
 loadTeamButton.addEventListener("click", loadTeam);
-
 teamForm.addEventListener("submit", submitTeamHandler);
 
 function submitTeamHandler(submitEvent) {
@@ -59,10 +57,9 @@ function submitTeamHandler(submitEvent) {
   buildTeam(chosenTeamName, chosenSport, chosenPlayerAmount);
   renderFieldPlayers(mainTeam);
   renderPlayersTab(mainTeam);
+  console.log("Main Team: ", mainTeam);
   saveTeam(mainTeam);
 }
-
-/*TODO: Implementar Drag and Drop
 
 const position = { x: 0, y: 0 };
 
@@ -78,4 +75,4 @@ interact(".draggable").draggable({
       event.target.style.transform = `translate(${position.x}px, ${position.y}px)`;
     },
   },
-});*/
+});

@@ -1,8 +1,8 @@
 export default class Team {
-  constructor(name, sport) {
+  constructor(name, sport, players = []) {
     this.name = name;
     this.sport = sport;
-    this.players = [];
+    this.players = players;
   }
 
   addPlayer(player) {

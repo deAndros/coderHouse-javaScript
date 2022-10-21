@@ -1,11 +1,11 @@
 import { saveTeam } from "./storageHandler.js";
-import {
-  addEventListenersToFieldPlayers,
-  addEventListenersToPlayersTab,
-} from "./eventListenerAdder.js";
-import renderableElements from "../constants/renderableElements.js";
+import addEventListenersToPlayersTab from "./eventListenerAdder.js";
+import renderableElements from "../constants/domElements.js";
 
-//Función que renderiza a los jugadores en el campo de juego
+/**
+ * Recibe un equipo y renderiza el campo de juego con los jugadores que lo integran
+ * @param {Team} team Instancia de la clase Team
+ */
 function renderFieldPlayers(team) {
   renderableElements["field"].innerHTML = "";
 
@@ -13,7 +13,7 @@ function renderFieldPlayers(team) {
     renderableElements["field"].innerHTML = `${
       renderableElements["field"].innerHTML
     }
-    <div class="player-${i + 1}" draggable="true">
+    <div class="player-${i + 1} draggable" draggable="true">
       <span id="player-${i + 1}-field-number">${
       team.players[i].shirtNumber
     }</span>
@@ -24,8 +24,6 @@ function renderFieldPlayers(team) {
     }">
     </div>`;
   }
-
-  addEventListenersToFieldPlayers(renderableElements["field"]);
 }
 
 //Función que renderiza a los jugadores en la tab de jugadores
