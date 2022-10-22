@@ -13,7 +13,7 @@ body {
 /*Contenedores principales*/
 .column {
   float: left;
-  width: 45%;
+  width: 50%;
 }
 
 .main-container {

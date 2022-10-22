@@ -23,7 +23,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-custom navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Andros TeamBuilder!</a>
         <button
@@ -114,16 +114,25 @@
             </form>
           </div>
 
-          <input type="radio" id="tabsilver" name="mytabs" />
-          <label for="tabsilver">Jugadores</label>
+          <input type="radio" id="mainPlayersTab" name="mytabs" />
+          <label id="mainPlayersTabLabel" for="mainPlayersTab" hidden
+            >Jugadores</label
+          >
           <div class="tab" id="playersTab">
             <div class="shirt-number-column"></div>
             <div class="player-name-column"></div>
             <div class="delete-icon-column"></div>
+            <div class="add-icon-container">
+              <img
+                src="../assets/images/PlusIcon.png"
+                class="add-icon-button"
+                id="playerAddButton"
+              />
+            </div>
           </div>
 
-          <input type="radio" id="tabgold" name="mytabs" />
-          <label for="tabgold">Estilos</label>
+          <input type="radio" id="stylesTab" name="mytabs" />
+          <label id="stylesTabLabel" for="stylesTab" hidden>Estilos</label>
           <div class="tab">
             <h2 style="color: white">
               This section is still a work in progress
@@ -133,10 +142,20 @@
       </div>
 
       <!--Cancha-->
-      <div class="column">
+      <div class="column" style="display: inline-block">
         <div class="field-container">
-          <div class="striped" id="field"></div>
-          <div class="container-sm field-footer">
+          <div class="container-sm field-header">
+            <!--TODO Implementar un Select que me permita elegir entre todos los equipos guardados-->
+            <!--<div class="form-floating">
+              <select class="load-player-select form-select" id="loadPlayerSelect" aria-label="Floating label select example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              
+              <label for="floatingSelect">Works with selects</label>
+            </select>
+            </div>-->
             <button id="saveTeamButton" class="btn btn-primary" type="submit">
               SAVE
             </button>
@@ -147,6 +166,7 @@
               X
             </button>
           </div>
+          <div class="striped" id="field"></div>
         </div>
       </div>
     </div>

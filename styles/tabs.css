@@ -14,6 +14,10 @@
   padding: 15px;
   background: #e2e2e2;
   font-weight: bold;
+  border-style: inset;
+  border-color: rgba(172, 255, 47, 0.69);
+  border-width: 2px;
+  color: grey;
 }
 
 .mytabs .tab {
@@ -23,6 +27,9 @@
   order: 1;
   display: none;
   font-size: 15px;
+  border-style: inset;
+  border-color: rgba(172, 255, 47, 0.69);
+  border-width: 2px;
 }
 
 .mytabs .tab h2 {
@@ -35,17 +42,22 @@
 
 .mytabs input[type="radio"]:checked + label {
   background: rgb(255, 255, 255);
+  color: black;
 }
 
 /*Estilos de los formularios*/
 .form-floating > .form-select {
-  width: 62%;
+  width: 65%;
   margin-bottom: 20px;
-  height: 61px;
+  height: 67px;
 }
 
 .form-field {
-  background-color: rgb(226 244 253);
+  background-color: rgb(255, 255, 255);
+  border-style: inset;
+  border-radius: 4px;
+  border-color: rgba(172, 255, 47, 0.69);
+  border-width: 2px;
 }
 
 /*Estilos de pestaña de jugadores*/
@@ -54,7 +66,7 @@
   float: left;
 }
 .player-name-column {
-  width: 300px;
+  width: 292px;
   float: left;
   margin-left: 10px;
 }
@@ -128,16 +140,12 @@
   -moz-border-radius: 5px;
   border-radius: 5px;
   border: 2px solid;
+  border-color: #47f250;
 }
 
-.delete-player-button {
-  margin-top: 8px;
-  width: 30px;
-  height: 30px;
-  margin-left: 10px;
-  cursor: pointer;
+.inputPlayerNumber {
+  border-color: #47f250;
 }
-
 /*Estilo de los botones*/
 .form-button {
   padding: 12px;
@@ -156,4 +164,29 @@
   border: none;
   font-size: 18px;
   display: inline-block;
+}
+
+.add-icon-container {
+  left: 0;
+  right: 0;
+  height: auto;
+  top: 50%;
+  text-align: center;
+  display: inline-block;
+  margin-left: 45%;
+  margin-top: 5%;
+}
+
+.add-icon-button {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.delete-player-button {
+  margin-top: 8px;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  cursor: pointer;
 }
