@@ -4,12 +4,29 @@ import {
   renderFieldPlayers,
   renderPlayersTab,
 } from "./auxFunctions/domPrinter.js";
-import { saveTeam } from "./auxFunctions/storageHandler.js";
+import {
+  saveTeamToStorage,
+  deleteTeamFromStorage,
+  fetchFromStorage,
+} from "./auxFunctions/storageHandler.js";
 
 //TODO Ver la clase 11 para preparar el proyecto para su entrega (Workshop)
 //TODO Ver la clase 12 para aplicar sugar syntax y simplificaciones al proyecto
 
 let mainTeam = undefined;
+
+const inputTeamName = document.getElementById("inputTeamName");
+const selectSport = document.getElementById("selectSport");
+const selectPlayerAmount = document.getElementById("selectPlayerAmount");
+const teamForm = document.getElementById("teamForm");
+const loadTeamButton = document.getElementById("loadTeamButton");
+const saveTeamButton = document.getElementById("saveTeamButton");
+const deleteTeamButton = document.getElementById("deleteTeamButton");
+
+deleteTeamButton.addEventListener("click", () => deleteTeamHandler(mainTeam));
+saveTeamButton.addEventListener("click", () => saveTeamToStorage(mainTeam));
+loadTeamButton.addEventListener("click", loadTeamHandler);
+teamForm.addEventListener("submit", submitTeamHandler);
 
 function buildTeam(teamName, teamSport, teamPlayerAmount) {
   let team = new Team(teamName, teamSport);
@@ -21,27 +38,6 @@ function buildTeam(teamName, teamSport, teamPlayerAmount) {
   }
   mainTeam = team;
 }
-
-function loadTeam() {
-  let team = JSON.parse(localStorage.getItem("mainTeam")) || undefined;
-  if (!team) {
-    console.log("No hay ningún equipo guardado");
-    return;
-  }
-
-  mainTeam = new Team(team.teamName, team.teamSport, team.players);
-  renderFieldPlayers(mainTeam);
-  renderPlayersTab(mainTeam);
-}
-
-const inputTeamName = document.getElementById("inputTeamName");
-const selectSport = document.getElementById("selectSport");
-const selectPlayerAmount = document.getElementById("selectPlayerAmount");
-const teamForm = document.getElementById("teamForm");
-const loadTeamButton = document.getElementById("loadTeamButton");
-
-loadTeamButton.addEventListener("click", loadTeam);
-teamForm.addEventListener("submit", submitTeamHandler);
 
 function submitTeamHandler(submitEvent) {
   submitEvent.preventDefault();
@@ -57,8 +53,27 @@ function submitTeamHandler(submitEvent) {
   buildTeam(chosenTeamName, chosenSport, chosenPlayerAmount);
   renderFieldPlayers(mainTeam);
   renderPlayersTab(mainTeam);
-  console.log("Main Team: ", mainTeam);
-  saveTeam(mainTeam);
+}
+
+function deleteTeamHandler(team) {
+  team = new Team();
+  mainTeam = team;
+
+  deleteTeamFromStorage();
+  renderFieldPlayers(mainTeam);
+  renderPlayersTab(mainTeam);
+}
+
+function loadTeamHandler() {
+  let team = fetchFromStorage();
+  if (!team) {
+    console.log("No hay ningún equipo guardado");
+    return;
+  }
+
+  mainTeam = new Team(team.teamName, team.teamSport, team.players);
+  renderFieldPlayers(mainTeam);
+  renderPlayersTab(mainTeam);
 }
 
 const position = { x: 0, y: 0 };

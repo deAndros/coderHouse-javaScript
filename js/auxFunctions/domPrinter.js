@@ -1,4 +1,3 @@
-import { saveTeam } from "./storageHandler.js";
 import addEventListenersToPlayersTab from "./eventListenerAdder.js";
 import renderableElements from "../constants/domElements.js";
 
@@ -110,7 +109,6 @@ function updatePlayer(i, modifiedElement, team) {
     default:
       console.log("Se produjo un error al actualizar el jugador");
   }
-  saveTeam(team);
 }
 
 export { renderFieldPlayers, renderPlayersTab, updatePlayer };

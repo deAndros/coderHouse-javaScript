@@ -12,3 +12,16 @@
   height: 600px;
   width: 480px;
 }
+
+.btn {
+  margin: 5px;
+}
+
+.field-footer {
+  background-color: #0b1724;
+  float: left;
+  border-radius: 5px;
+  width: 26.5%;
+  position: absolute;
+  top: 79.8%;
+}

@@ -56,63 +56,62 @@
           <label for="tabfree">Equipo</label>
           <div class="tab">
             <form id="teamForm">
-              <table>
-                <tr>
-                  <td>
-                    <div class="form-label">Nombre del equipo</div>
-                    <input
-                      type="text"
-                      id="inputTeamName"
-                      placeholder="Nombre del equipo"
-                      required
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="form-label">Deporte</div>
-                    <select id="selectSport" name="selectSport" role="option">
-                      <option value="football" selected="selected">
-                        Fútbol
-                      </option>
-                      <option value="basketball">Básquet</option>
-                    </select>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="form-label">Cantidad de jugadores</div>
-                    <select
-                      id="selectPlayerAmount"
-                      name="selectPlayerAmount"
-                      role="option"
-                    >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                      <option value="11" selected="selected">11</option>
-                    </select>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <button id="buttonBuild" class="form-button" type="submit">
-                      BUILD TEAM!
-                    </button>
-                  </td>
-                </tr>
-              </table>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control form-field"
+                  id="inputTeamName"
+                  placeholder="DREAM TEAM FC =)"
+                  style="width: 87%"
+                  required
+                />
+                <label for="floatingInput" class="css-exclusion"
+                  >Nombre del equipo</label
+                >
+              </div>
+              <div class="form-floating">
+                <select
+                  class="form-select form-field"
+                  id="selectSport"
+                  aria-label="Fútbol"
+                  name="selectSport"
+                  role="option"
+                >
+                  <option value="football" selected>Fútbol</option>
+                  <option value="basketball">Básquet</option>
+                </select>
+                <label for="floatingSelect" class="css-exclusion"
+                  >Elegí qué deporte juega tu equipo</label
+                >
+              </div>
+              <div class="form-floating">
+                <select
+                  class="form-select form-field"
+                  id="selectPlayerAmount"
+                  name="selectPlayerAmount"
+                  role="option"
+                  aria-label="Floating label select example"
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11" selected>11</option>
+                </select>
+                <label for="floatingSelect" class="css-exclusion"
+                  >¿Cuántos jugadores tiene tu equipo?</label
+                >
+              </div>
+              <button id="buttonBuild" class="form-button" type="submit">
+                BUILD TEAM!
+              </button>
             </form>
-            <button id="loadTeamButton" class="form-button" type="submit">
-              LOAD TEAM!
-            </button>
           </div>
 
           <input type="radio" id="tabsilver" name="mytabs" />
@@ -126,7 +125,9 @@
           <input type="radio" id="tabgold" name="mytabs" />
           <label for="tabgold">Estilos</label>
           <div class="tab">
-            <h2>This section is still a work in progress</h2>
+            <h2 style="color: white">
+              This section is still a work in progress
+            </h2>
           </div>
         </div>
       </div>
@@ -135,11 +136,20 @@
       <div class="column">
         <div class="field-container">
           <div class="striped" id="field"></div>
+          <div class="container-sm field-footer">
+            <button id="saveTeamButton" class="btn btn-primary" type="submit">
+              SAVE
+            </button>
+            <button id="loadTeamButton" class="btn btn-success" type="submit">
+              LOAD
+            </button>
+            <button id="deleteTeamButton" class="btn btn-danger" type="submit">
+              X
+            </button>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="draggable">Draggable Element</div>
 
     <!--Librería de NAV VAR-->
     <script

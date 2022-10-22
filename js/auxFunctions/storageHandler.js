@@ -1,6 +1,14 @@
-function saveTeam(team) {
-  console.log("El main team que se guarda :", team);
+function saveTeamToStorage(team) {
   localStorage.setItem("mainTeam", JSON.stringify(team));
 }
 
-export { saveTeam };
+function deleteTeamFromStorage() {
+  localStorage.removeItem("mainTeam");
+}
+
+function fetchFromStorage() {
+  let team = JSON.parse(localStorage.getItem("mainTeam")) || undefined;
+  return team;
+}
+
+export { saveTeamToStorage, deleteTeamFromStorage, fetchFromStorage };
