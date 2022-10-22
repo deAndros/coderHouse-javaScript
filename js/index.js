@@ -134,6 +134,7 @@ function deleteTeamHandler(team) {
   renderPlayersTab(mainTeam);
 }
 
+//TODO: Implementar DropZone
 function loadTeamHandler() {
   let team = fetchFromStorage();
   if (!team) {

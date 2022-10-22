@@ -10,7 +10,6 @@ export default class Team {
     return this;
   }
 
-  //TODO: Revisar por qué cuando quiero borrar un jugador de un equipo guardado en el local storage no funciona
   deletePlayer(player) {
     let deletedPlayerId = player.id;
     this.players = this.players.filter(
