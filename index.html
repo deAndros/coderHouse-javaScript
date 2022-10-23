@@ -130,8 +130,8 @@
       <!--Pestañas para armado y configuración del equipo-->
       <div class="column">
         <div class="mytabs">
-          <input type="radio" id="tabfree" name="mytabs" checked="checked" />
-          <label for="tabfree">Equipo</label>
+          <input type="radio" id="teamTab" name="mytabs" checked="checked" />
+          <label for="teamTab">Equipo</label>
           <div class="tab">
             <form id="teamForm">
               <div class="form-floating mb-3">
@@ -186,7 +186,7 @@
                   >¿Cuántos jugadores tiene tu equipo?</label
                 >
               </div>
-              <button id="buttonBuild" class="form-button" type="submit">
+              <button id="buttonBuild" class="btn btn-success" type="submit">
                 BUILD TEAM!
               </button>
             </form>
@@ -240,7 +240,12 @@
             <button id="loadTeamButton" class="btn btn-success" type="submit">
               LOAD
             </button>
-            <button id="deleteTeamButton" class="btn btn-danger" type="submit">
+            <button
+              id="deleteTeamButton"
+              class="btn btn-danger"
+              type="submit"
+              hidden
+            >
               X
             </button>
           </div>
@@ -255,8 +260,14 @@
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
       crossorigin="anonymous"
     ></script>
+
     <!--Libería de Drag and Drop-->
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+
+    <!--Librería de Sweet Alerts-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!--Código propio-->
     <script type="module" src="./js/index.js"></script>
   </body>
 </html>

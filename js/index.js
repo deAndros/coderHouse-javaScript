@@ -25,21 +25,23 @@ const deleteTeamButton = document.getElementById("deleteTeamButton");
 const playerAddButton = document.getElementById("playerAddButton");
 const mainPlayersTabLabel = document.getElementById("mainPlayersTabLabel");
 const stylesTabLabel = document.getElementById("stylesTabLabel");
+const teamTab = document.getElementById("teamTab");
 
 playerAddButton.addEventListener("click", () =>
   addPlayerToTeamHandler(mainTeam)
 );
 deleteTeamButton.addEventListener("click", () => deleteTeamHandler(mainTeam));
-saveTeamButton.addEventListener("click", () => saveTeamToStorage(mainTeam));
+saveTeamButton.addEventListener("click", () => saveTeamHandler(mainTeam));
 loadTeamButton.addEventListener("click", loadTeamHandler);
 teamForm.addEventListener("submit", submitTeamHandler);
 
 function addPlayerToTeamHandler(team) {
-  if (!team) {
-    console.log("No se pueden agregar jugadores, primero creá un equipo!");
-    return;
-  } else if (team.players.length === 11) {
-    console.log("No se pueden agregar más de 11 jugadores!");
+  if (team.players.length === 11) {
+    Swal.fire(
+      "Demasiados jugadores!",
+      "Recuerda que no es posible tener más de 11 jugadores en un equipo",
+      "error"
+    );
     return;
   }
 
@@ -109,6 +111,7 @@ function buildTeam(teamName, teamSport, teamPlayerAmount) {
 
 function submitTeamHandler(submitEvent) {
   submitEvent.preventDefault();
+
   mainTeam = undefined;
 
   //Obtengo los elementos del formulario y los almaceno en las variables "chosen"
@@ -123,22 +126,48 @@ function submitTeamHandler(submitEvent) {
   renderPlayersTab(mainTeam);
   mainPlayersTabLabel.removeAttribute("hidden");
   stylesTabLabel.removeAttribute("hidden");
+  deleteTeamButton.removeAttribute("hidden");
 }
 
 function deleteTeamHandler(team) {
-  team = new Team();
-  mainTeam = team;
+  Swal.fire({
+    title: "¿Eliminar este equipo?",
+    html: `Recuerda que una vez eliminado, el equipo <b>${team.name}</b> no podrá volverse a cargar`,
+    showDenyButton: true,
+    confirmButtonText: "Sí",
+    denyButtonText: "No",
+    customClass: {
+      actions: "my-actions",
+      confirmButton: "order-2",
+      denyButton: "order-3",
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      team = new Team();
+      mainTeam = team;
 
-  deleteTeamFromStorage();
-  renderFieldPlayers(mainTeam);
-  renderPlayersTab(mainTeam);
+      deleteTeamFromStorage();
+      renderFieldPlayers(mainTeam);
+      renderPlayersTab(mainTeam);
+      teamTab.click();
+      mainPlayersTabLabel.hidden = true;
+      stylesTabLabel.hidden = true;
+      deleteTeamButton.hidden = true;
+      Swal.fire("Equipo eliminado!", "", "success");
+    } else if (result.isDenied) {
+      return;
+    }
+  });
 }
 
-//TODO: Implementar DropZone
 function loadTeamHandler() {
   let team = fetchFromStorage();
   if (!team) {
-    console.log("No hay ningún equipo guardado");
+    Swal.fire(
+      "No hay equipos guardados",
+      "Recuerda presionar el botón <b>SAVE</b> para no perder los cambios!",
+      "error"
+    );
     return;
   }
 
@@ -147,8 +176,32 @@ function loadTeamHandler() {
   renderPlayersTab(mainTeam);
   mainPlayersTabLabel.removeAttribute("hidden");
   stylesTabLabel.removeAttribute("hidden");
+  deleteTeamButton.removeAttribute("hidden");
+  Swal.fire(
+    "Equipo cargado exitosamente!",
+    "Recuerda presionar el botón <b>SAVE</b> para no perder los cambios!",
+    "success"
+  );
 }
 
+function saveTeamHandler(team) {
+  if (!team) {
+    Swal.fire(
+      "No hay ningún equipo en cancha!",
+      "Recuerda presionar el botón <b>BUILD TEAM!</b> para crear uno o bien el botón <b>LOAD</b> si ya lo tienes!",
+      "info"
+    );
+    return;
+  }
+  saveTeamToStorage(team);
+  Swal.fire(
+    "Equipo guardado correctamente!",
+    "Recuerda presionar el botón <b>LOAD</b> para poder recuperarlo!",
+    "success"
+  );
+}
+
+//TODO: Implementar DropZone de forma tal que los jugadores solo puedan arrastrarse por el campo de juego
 const position = { x: 0, y: 0 };
 
 interact(".draggable").draggable({

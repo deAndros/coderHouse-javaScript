@@ -147,25 +147,6 @@
   border-color: #47f250;
 }
 /*Estilo de los botones*/
-.form-button {
-  padding: 12px;
-  padding-top: 9px;
-  padding-bottom: 9px;
-  min-width: 100px;
-  margin: 0 auto;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  text-align: center;
-  border-radius: 5px;
-  transition: background-color 0.2s ease-in-out;
-  width: 150px;
-  background-color: #3ea055;
-  color: #fff;
-  border: none;
-  font-size: 18px;
-  display: inline-block;
-}
-
 .add-icon-container {
   left: 0;
   right: 0;
