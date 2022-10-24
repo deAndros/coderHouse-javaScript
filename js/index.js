@@ -146,9 +146,10 @@ function deleteTeamHandler(team) {
       team = new Team();
       mainTeam = team;
 
-      deleteTeamFromStorage();
       renderFieldPlayers(mainTeam);
       renderPlayersTab(mainTeam);
+      deleteTeamFromStorage();
+      mainTeam = undefined;
       teamTab.click();
       mainPlayersTabLabel.hidden = true;
       stylesTabLabel.hidden = true;
