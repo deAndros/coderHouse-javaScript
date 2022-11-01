@@ -1,0 +1,124 @@
+{
+  "argentina1986": {
+    "name": "Selección Argentina 1986",
+    "sport": "football",
+    "players": [
+      {
+        "name": "PUMPIDO",
+        "teamName": "Selección Argentina 1986",
+        "shirtNumber": 18
+      },
+      {
+        "name": "CUCIUFFO",
+        "teamName": "Selección Argentina 1986",
+        "shirtNumber": 9
+      },
+      {
+        "name": "OLARTICOECHEA",
+        "teamName": "Selección Argentina 1986",
+        "shirtNumber": 16
+      },
+      {
+        "name": "RUGGERI",
+        "teamName": "Selección Argentina 1986",
+        "shirtNumber": 19
+      },
+      {
+        "name": "BATISTA",
+        "teamName": "Selección Argentina 1986",
+        "shirtNumber": 2
+      },
+      {
+        "name": "BURRUCHAGA",
+        "teamName": "Selección Argentina 1986",
+        "shirtNumber": 7
+      },
+      {
+        "name": "MARADONA",
+        "teamName": "Selección Argentina 1986",
+        "shirtNumber": 10
+      },
+      {
+        "name": "ENRIQUE",
+        "teamName": "Selección Argentina 1986",
+        "shirtNumber": 12
+      },
+      {
+        "name": "GIUSTI",
+        "teamName": "Selección Argentina 1986",
+        "shirtNumber": 14
+      },
+      {
+        "name": "VALDANO",
+        "teamName": "Selección Argentina 1986",
+        "shirtNumber": 11
+      },
+      {
+        "name": "BROWN",
+        "teamName": "Selección Argentina 1986",
+        "shirtNumber": 5
+      }
+    ]
+  },
+  "brasil2002": {
+    "name": "Selección Brasileña 2002",
+    "sport": "football",
+    "players": [
+      {
+        "name": "MARCOS",
+        "teamName": "Selección Brasileña 2002",
+        "shirtNumber": 1
+      },
+      {
+        "name": "CAFU",
+        "teamName": "Selección Brasileña 2002",
+        "shirtNumber": 9
+      },
+      {
+        "name": "LUCIO",
+        "teamName": "Selección Brasileña 2002",
+        "shirtNumber": 3
+      },
+      {
+        "name": "R. JUNIOR",
+        "teamName": "Selección Brasileña 2002",
+        "shirtNumber": 4
+      },
+      {
+        "name": "EDMILSON",
+        "teamName": "Selección Brasileña 2002",
+        "shirtNumber": 5
+      },
+      {
+        "name": "R. CARLOS",
+        "teamName": "Selección Brasileña 2002",
+        "shirtNumber": 6
+      },
+      {
+        "name": "SILVA",
+        "teamName": "Selección Brasileña 2002",
+        "shirtNumber": 8
+      },
+      {
+        "name": "RIVALDO",
+        "teamName": "Selección Brasileña 2002",
+        "shirtNumber": 10
+      },
+      {
+        "name": "RONALDINHO",
+        "teamName": "Selección Brasileña 2002",
+        "shirtNumber": 11
+      },
+      {
+        "name": "KLEBERSON",
+        "teamName": "Selección Brasileña 2002",
+        "shirtNumber": 15
+      },
+      {
+        "name": "RONALDO",
+        "teamName": "Selección Brasileña 2002",
+        "shirtNumber": 9
+      }
+    ]
+  }
+}

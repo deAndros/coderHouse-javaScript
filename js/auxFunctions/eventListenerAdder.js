@@ -1,5 +1,5 @@
 import { updatePlayer } from "./domPrinter.js";
-import renderableElements from "../constants/domElements.js";
+import { renderableElements } from "../constants/domElements.js";
 
 function addEventListenersToPlayersTab(team) {
   const playersTabShirtNumberColumnElements =

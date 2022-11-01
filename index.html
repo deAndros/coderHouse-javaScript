@@ -209,12 +209,39 @@
             </div>
           </div>
 
-          <input type="radio" id="stylesTab" name="mytabs" />
-          <label id="stylesTabLabel" for="stylesTab" hidden>Estilos</label>
+          <input type="radio" id="legacyTab" name="mytabs" />
+          <label id="legacyTablabel" for="legacyTab">Legacy</label>
           <div class="tab">
-            <h2 style="color: white">
-              This section is still a work in progress
-            </h2>
+            <h6 style="color: white; text-align: justify">
+              ¡Armá tu estratégia con equipos icónicos de distintas épocas!
+            </h6>
+            <br />
+            <div class="form-floating">
+              <select
+                class="form-select form-field"
+                id="selectLegacyTeam"
+                aria-label="Argentina 1986"
+                name="selectLegacyTeam"
+                role="option"
+              >
+                <option value="argentina1986" selected>Argentina 1986</option>
+                <option value="brasil2002">Brasil 2002</option>
+              </select>
+              <label for="floatingSelect" class="css-exclusion"
+                >Equipo de legado</label
+              >
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="loadLegacyTeam"
+              style="
+                background-color: rgb(181, 181, 0);
+                border-color: rgb(181, 181, 0);
+              "
+            >
+              LOAD LEGACY TEAM!
+            </button>
           </div>
         </div>
       </div>
@@ -234,25 +261,41 @@
               <label for="floatingSelect">Works with selects</label>
             </select>
             </div>-->
-            <button id="saveTeamButton" class="btn btn-primary" type="submit">
-              SAVE
-            </button>
-            <button id="loadTeamButton" class="btn btn-success" type="submit">
-              LOAD
-            </button>
+            <div class="info-icon">
+              <img src="../assets/images/infoIcon.png" />
+              <span class="tooltiptext"
+                >!Clickea sobre una camiseta para tener un arquero!</span
+              >
+            </div>
             <button
               id="deleteTeamButton"
-              class="btn btn-danger"
+              class="btn btn-danger field-header-button"
               type="submit"
               hidden
             >
               X
+            </button>
+            <button
+              id="loadTeamButton"
+              class="btn btn-success field-header-button"
+              type="submit"
+            >
+              LOAD
+            </button>
+            <button
+              id="saveTeamButton"
+              class="btn btn-primary field-header-button"
+              type="submit"
+            >
+              SAVE
             </button>
           </div>
           <div class="striped" id="field"></div>
         </div>
       </div>
     </div>
+
+    <!--CDNs-->
 
     <!--Librería de NAV VAR-->
     <script

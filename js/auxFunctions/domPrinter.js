@@ -1,5 +1,5 @@
 import addEventListenersToPlayersTab from "./eventListenerAdder.js";
-import renderableElements from "../constants/domElements.js";
+import { renderableElements } from "../constants/domElements.js";
 
 /**
  * Recibe un equipo y renderiza el campo de juego con los jugadores que lo integran
@@ -16,7 +16,7 @@ function renderFieldPlayers(team) {
       <span id="player-${i + 1}-field-number">${
       team.players[i].shirtNumber
     }</span>
-      <img src="../assets/images/footballKit.png" alt="camiseta">
+      <img src="../assets/images/footballKit.png" class="tap-target" alt="camiseta">
       </br>
       <input class="playerFieldInput" id="player-${i + 1}-field-input" value="${
       team.players[i].name
@@ -42,6 +42,7 @@ function renderPlayersTab(team) {
             type="number"
             min="1" 
             max="99"
+            maxlength="2"
             id="inputPlayerNumber${i}"
             class="inputPlayerNumber"
             value="${team.players[i - 1].shirtNumber}"
