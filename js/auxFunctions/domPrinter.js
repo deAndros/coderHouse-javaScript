@@ -8,6 +8,10 @@ import { renderableElements } from "../constants/domElements.js";
 function renderFieldPlayers(team) {
   renderableElements["field"].innerHTML = "";
 
+  renderableElements[
+    "teamNameHeader"
+  ].innerHTML = `<span class="team-name-header">${team.name}</span>`;
+
   for (let i = 0; i < team.players.length; i++) {
     renderableElements["field"].innerHTML = `${
       renderableElements["field"].innerHTML

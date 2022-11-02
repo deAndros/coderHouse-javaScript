@@ -27,6 +27,16 @@
   display: inline-block;
 }
 
+#teamNameHeader {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  color: #e2e2e2;
+  text-align: center;
+  top: 10px;
+  right: 438px;
+}
+
 .field-header {
   background-color: #0b1724;
   border-radius: 5px;

@@ -148,6 +148,7 @@ function submitTeamHandler(submitEvent) {
         buildTeam(chosenTeamName, chosenSport, chosenPlayerAmount);
         renderFieldPlayers(mainTeam);
         renderPlayersTab(mainTeam);
+        renderableElements["teamNameHeader"].removeAttribute("hidden");
         tabs["mainPlayersTabLabel"].removeAttribute("hidden");
         buttons["deleteTeamButton"].removeAttribute("hidden");
       } else if (result.isDenied) {
@@ -170,9 +171,9 @@ function submitTeamHandler(submitEvent) {
     );
 
     buildTeam(chosenTeamName, chosenSport, chosenPlayerAmount);
-    console.log(mainTeam);
     renderFieldPlayers(mainTeam);
     renderPlayersTab(mainTeam);
+    renderableElements["teamNameHeader"].removeAttribute("hidden");
     tabs["mainPlayersTabLabel"].removeAttribute("hidden");
     buttons["deleteTeamButton"].removeAttribute("hidden");
   }
@@ -200,6 +201,8 @@ function deleteTeamHandler(team) {
       deleteTeamFromStorage();
       mainTeam = undefined;
       tabs["teamTab"].click();
+      renderableElements["teamNameHeader"].innerHTML = "";
+      renderableElements["teamNameHeader"].hidden = true;
       tabs["mainPlayersTabLabel"].hidden = true;
       buttons["deleteTeamButton"].hidden = true;
       Swal.fire("Equipo eliminado!", "", "success");
@@ -220,8 +223,8 @@ async function loadTeamHandler(source) {
           "Recuerda presionar el botón <b>SAVE</b> para no perder los cambios!",
           "error"
         );
-        break;
       }
+      break;
     case "LEGACY":
       const legacyTeams = await fetch("js/constants/legacyTeams.json")
         .then((promise) => {
@@ -244,10 +247,10 @@ async function loadTeamHandler(source) {
       );
       return;
   }
-
   mainTeam = new Team(teamToLoad.name, teamToLoad.sport, teamToLoad.players);
   renderFieldPlayers(mainTeam);
   renderPlayersTab(mainTeam);
+  renderableElements["teamNameHeader"].removeAttribute("hidden");
   tabs["mainPlayersTabLabel"].removeAttribute("hidden");
   buttons["deleteTeamButton"].removeAttribute("hidden");
   Swal.fire(

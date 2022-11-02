@@ -14,6 +14,7 @@ const renderableElements = {
     .getElementsByTagName("div")[2],
 
   field: document.getElementById("field"),
+  teamNameHeader: document.getElementById("teamNameHeader"),
 };
 
 const formElements = {
