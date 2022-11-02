@@ -9,11 +9,15 @@ import {
   deleteTeamFromStorage,
   fetchFromStorage,
 } from "./auxFunctions/storageHandler.js";
-import { formElements, buttons, tabs } from "./constants/domElements.js";
+import {
+  formElements,
+  buttons,
+  tabs,
+  renderableElements,
+} from "./constants/domElements.js";
 
 //TODO Ver la clase 11 para preparar el proyecto para su entrega (Workshop)
 //TODO Ver la clase 12 para aplicar sugar syntax y simplificaciones al proyecto
-//TODO Buscar manera de guardar los equipos dentro de un JSON, es decir, que se escriba el JSON dinámicamente en el código y luego traer el equipo guardado con un fetch
 
 let mainTeam = undefined;
 
@@ -26,8 +30,12 @@ buttons["deleteTeamButton"].addEventListener("click", () =>
 buttons["saveTeamButton"].addEventListener("click", () =>
   saveTeamHandler(mainTeam)
 );
-buttons["loadTeamButton"].addEventListener("click", loadTeamHandler);
-buttons["loadLegacyTeam"].addEventListener("click", loadLegacyTeamHandler);
+buttons["loadTeamButton"].addEventListener("click", () =>
+  loadTeamHandler("STORAGE")
+);
+buttons["loadLegacyTeamButton"].addEventListener("click", () =>
+  loadTeamHandler("LEGACY")
+);
 formElements["teamForm"].addEventListener("submit", submitTeamHandler);
 
 //Función auxiliar para encontrar el primer número entero positivo que no esté en un arreglo
@@ -138,7 +146,6 @@ function submitTeamHandler(submitEvent) {
         );
 
         buildTeam(chosenTeamName, chosenSport, chosenPlayerAmount);
-        console.log(mainTeam);
         renderFieldPlayers(mainTeam);
         renderPlayersTab(mainTeam);
         tabs["mainPlayersTabLabel"].removeAttribute("hidden");
@@ -202,18 +209,43 @@ function deleteTeamHandler(team) {
   });
 }
 
-function loadTeamHandler() {
-  let team = fetchFromStorage();
-  if (!team) {
-    Swal.fire(
-      "No hay equipos guardados",
-      "Recuerda presionar el botón <b>SAVE</b> para no perder los cambios!",
-      "error"
-    );
-    return;
+async function loadTeamHandler(source) {
+  let teamToLoad;
+  switch (source) {
+    case "STORAGE":
+      teamToLoad = fetchFromStorage();
+      if (!teamToLoad) {
+        Swal.fire(
+          "No hay equipos guardados",
+          "Recuerda presionar el botón <b>SAVE</b> para no perder los cambios!",
+          "error"
+        );
+        break;
+      }
+    case "LEGACY":
+      const legacyTeams = await fetch("js/constants/legacyTeams.json")
+        .then((promise) => {
+          return promise.json();
+        })
+        //Retorna un objeto JSON, no es necesario escribir return porque la función flecha si no lleva {} tiene un return implicito
+        .then((data) => {
+          let chosenLegacyTeam =
+            formElements["selectLegacyTeam"].options[
+              formElements["selectLegacyTeam"].selectedIndex
+            ].value;
+          teamToLoad = data[chosenLegacyTeam];
+        });
+      break;
+    default:
+      Swal.fire(
+        "Se produjo un inesperado, por favor intentá nuevamente más tarde",
+        "",
+        "error"
+      );
+      return;
   }
 
-  mainTeam = new Team(team.name, team.sport, team.players);
+  mainTeam = new Team(teamToLoad.name, teamToLoad.sport, teamToLoad.players);
   renderFieldPlayers(mainTeam);
   renderPlayersTab(mainTeam);
   tabs["mainPlayersTabLabel"].removeAttribute("hidden");
@@ -242,23 +274,47 @@ function saveTeamHandler(team) {
   );
 }
 
-function loadLegacyTeamHandler() {
-  fetch("js/constants/legacyTeams.json")
-    .then((resp) => {
-      return resp.json();
-    })
-    .then((data) => {
-      console.log("Legacy Teams: ", data);
-    });
+function updatePlayerHandler(i, modifiedElement, team) {
+  switch (modifiedElement) {
+    case "PLAYER NAME":
+      //Obtengo y actualizo el nombre del jugador
+      let newName =
+        renderableElements["playersTabNameColumn"].getElementsByTagName(
+          "input"
+        )[i].value;
+      team.players[i].name = newName;
 
-  /*El mismo fetch hubiese funcionado si en el primer .then() uso llaves en la función anónima lo que hago es quitar el return implícito que esta tiene y
-  por lo tanto voy a tener que ingresar el retorno manualmente. La otra forma de escribirlo sería:
-  
-    fetch("js/constants/legacyTeams.json")
-    .then((resp) => resp.json())
-    .then((data) => {
-      console.log("Legacy Teams: ", data);
-    });*/
+      //Vuelvo a renderizar la cancha
+      renderFieldPlayers(team);
+      break;
+    case "SHIRT NUMBER":
+      //Obtengo y actualizo el número de camiseta del jugador
+      let newNumber =
+        renderableElements["playersTabShirtNumberColumn"].getElementsByTagName(
+          "input"
+        )[i].value;
+      team.players[i].shirtNumber = parseInt(newNumber);
+
+      //Vuelvo a renderizar la cancha
+      renderFieldPlayers(team);
+      break;
+    case "DELETE PLAYER":
+      //Borro al jugador del equipo
+      let deletedPlayer = team.players[i];
+      team = team.deletePlayer(deletedPlayer);
+
+      //Vuelvo a renderizar la tab y la cancha sin el jugador borrado
+      renderFieldPlayers(team);
+      renderPlayersTab(team);
+      break;
+    default:
+      Swal.fire(
+        "Se produjo un inesperado, por favor intentá nuevamente más tarde",
+        "",
+        "error"
+      );
+      return;
+  }
 }
 
 //TODO: Implementar DropZone de forma tal que los jugadores solo puedan arrastrarse por el campo de juego
@@ -294,3 +350,5 @@ interact(".tap-target")
     event.currentTarget.classList.toggle("rotate");
     event.currentTarget.classList.remove("large");
   });
+
+export { updatePlayerHandler };

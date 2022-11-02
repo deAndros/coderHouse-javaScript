@@ -1,4 +1,4 @@
-import { updatePlayer } from "./domPrinter.js";
+import { updatePlayerHandler } from "../index.js";
 import { renderableElements } from "../constants/domElements.js";
 
 function addEventListenersToPlayersTab(team) {
@@ -14,15 +14,15 @@ function addEventListenersToPlayersTab(team) {
 
   for (let i = 0; i < team.players.length; i++) {
     playersTabShirtNumberColumnElements[i].addEventListener("change", () =>
-      updatePlayer(i, "SHIRT NUMBER", team)
+      updatePlayerHandler(i, "SHIRT NUMBER", team)
     );
 
     playersTabNameColumnElements[i].addEventListener("change", () =>
-      updatePlayer(i, "PLAYER NAME", team)
+      updatePlayerHandler(i, "PLAYER NAME", team)
     );
 
     playersTabDeleteColumnElements[i].addEventListener("click", () =>
-      updatePlayer(i, "DELETE PLAYER", team)
+      updatePlayerHandler(i, "DELETE PLAYER", team)
     );
   }
 }

@@ -21,6 +21,7 @@ const formElements = {
   inputTeamName: document.getElementById("inputTeamName"),
   selectSport: document.getElementById("selectSport"),
   selectPlayerAmount: document.getElementById("selectPlayerAmount"),
+  selectLegacyTeam: document.getElementById("selectLegacyTeam"),
 };
 
 const buttons = {
@@ -28,7 +29,7 @@ const buttons = {
   loadTeamButton: document.getElementById("loadTeamButton"),
   deleteTeamButton: document.getElementById("deleteTeamButton"),
   playerAddButton: document.getElementById("playerAddButton"),
-  loadLegacyTeam: document.getElementById("loadLegacyTeam"),
+  loadLegacyTeam: document.getElementById("loadLegacyTeamButton"),
 };
 
 const tabs = {

@@ -219,7 +219,8 @@
 }
 
 .playerFieldInput {
-  width: 14%;
+  width: 21%;
+  margin-left: -17px;
   background: transparent;
   border: none;
   text-align: center;

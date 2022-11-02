@@ -74,42 +74,4 @@ function renderPlayersTab(team) {
   addEventListenersToPlayersTab(team);
 }
 
-function updatePlayer(i, modifiedElement, team) {
-  switch (modifiedElement) {
-    case "PLAYER NAME":
-      //Obtengo y actualizo el nombre del jugador
-      let newName =
-        renderableElements["playersTabNameColumn"].getElementsByTagName(
-          "input"
-        )[i].value;
-      team.players[i].name = newName;
-
-      //Vuelvo a renderizar la cancha
-      renderFieldPlayers(team);
-      break;
-    case "SHIRT NUMBER":
-      //Obtengo y actualizo el número de camiseta del jugador
-      let newNumber =
-        renderableElements["playersTabShirtNumberColumn"].getElementsByTagName(
-          "input"
-        )[i].value;
-      team.players[i].shirtNumber = parseInt(newNumber);
-
-      //Vuelvo a renderizar la cancha
-      renderFieldPlayers(team);
-      break;
-    case "DELETE PLAYER":
-      //Borro al jugador del equipo
-      let deletedPlayer = team.players[i];
-      team = team.deletePlayer(deletedPlayer);
-
-      //Vuelvo a renderizar la tab y la cancha sin el jugador borrado
-      renderFieldPlayers(team);
-      renderPlayersTab(team);
-      break;
-    default:
-      console.log("Se produjo un error al actualizar el jugador");
-  }
-}
-
-export { renderFieldPlayers, renderPlayersTab, updatePlayer };
+export { renderFieldPlayers, renderPlayersTab };
