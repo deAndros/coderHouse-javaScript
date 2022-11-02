@@ -29,7 +29,7 @@ const buttons = {
   loadTeamButton: document.getElementById("loadTeamButton"),
   deleteTeamButton: document.getElementById("deleteTeamButton"),
   playerAddButton: document.getElementById("playerAddButton"),
-  loadLegacyTeam: document.getElementById("loadLegacyTeamButton"),
+  loadLegacyTeamButton: document.getElementById("loadLegacyTeamButton"),
 };
 
 const tabs = {
