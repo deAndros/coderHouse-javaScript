@@ -17,12 +17,4 @@ export default class Team {
     );
     return this;
   }
-
-  listTeam() {
-    let teamString = "";
-    for (const player of this.players) {
-      teamString += player.name + "\n";
-    }
-    return this.name + "\n" + teamString;
-  }
 }

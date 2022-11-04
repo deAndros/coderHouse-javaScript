@@ -1,14 +1,14 @@
 /*Estilos de los jugadores en cancha*/
-.player-1 {
+.football-player-1 {
   display: inline-block;
   position: relative;
   top: 87px;
   right: -128px;
 }
-.player-1 > img {
+.football-player-1 > img {
   width: 14%;
 }
-.player-1 > span {
+.football-player-1 > span {
   font-size: 25px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
@@ -19,15 +19,15 @@
   right: 438px;
 }
 
-.player-2 {
+.football-player-2 {
   display: inline-block;
   position: relative;
   right: -283px;
 }
-.player-2 > img {
+.football-player-2 > img {
   width: 14%;
 }
-.player-2 > span {
+.football-player-2 > span {
   font-size: 25px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
@@ -38,16 +38,16 @@
   right: 438px;
 }
 
-.player-3 {
+.football-player-3 {
   display: inline-block;
   position: relative;
   top: 4px;
   right: -53px;
 }
-.player-3 > img {
+.football-player-3 > img {
   width: 14%;
 }
-.player-3 > span {
+.football-player-3 > span {
   font-size: 25px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
@@ -58,16 +58,16 @@
   right: 438px;
 }
 
-.player-4 {
+.football-player-4 {
   display: inline-block;
   position: relative;
   top: -2px;
   right: -128px;
 }
-.player-4 > img {
+.football-player-4 > img {
   width: 14%;
 }
-.player-4 > span {
+.football-player-4 > span {
   font-size: 25px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
@@ -78,16 +78,16 @@
   right: 438px;
 }
 
-.player-5 {
+.football-player-5 {
   display: inline-block;
   position: relative;
   top: -90px;
   right: -283px;
 }
-.player-5 > img {
+.football-player-5 > img {
   width: 14%;
 }
-.player-5 > span {
+.football-player-5 > span {
   font-size: 25px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
@@ -98,16 +98,16 @@
   right: 438px;
 }
 
-.player-6 {
+.football-player-6 {
   display: inline-block;
   position: relative;
   top: -259px;
   right: -358px;
 }
-.player-6 > img {
+.football-player-6 > img {
   width: 14%;
 }
-.player-6 > span {
+.football-player-6 > span {
   font-size: 25px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
@@ -118,16 +118,16 @@
   right: 438px;
 }
 
-.player-7 {
+.football-player-7 {
   display: inline-block;
   position: relative;
   top: -105px;
   right: -128px;
 }
-.player-7 > img {
+.football-player-7 > img {
   width: 14%;
 }
-.player-7 > span {
+.football-player-7 > span {
   font-size: 25px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
@@ -138,16 +138,16 @@
   right: 438px;
 }
 
-.player-8 {
+.football-player-8 {
   display: inline-block;
   position: relative;
   top: -193px;
   right: -283px;
 }
-.player-8 > img {
+.football-player-8 > img {
   width: 14%;
 }
-.player-8 > span {
+.football-player-8 > span {
   font-size: 25px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
@@ -158,16 +158,16 @@
   right: 438px;
 }
 
-.player-9 {
+.football-player-9 {
   display: inline-block;
   position: relative;
   top: -335px;
   right: -53px;
 }
-.player-9 > img {
+.football-player-9 > img {
   width: 14%;
 }
-.player-9 > span {
+.football-player-9 > span {
   font-size: 25px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
@@ -178,16 +178,16 @@
   right: 438px;
 }
 
-.player-10 {
+.football-player-10 {
   display: inline-block;
   position: relative;
   top: -422px;
   right: -358px;
 }
-.player-10 > img {
+.football-player-10 > img {
   width: 14%;
 }
-.player-10 > span {
+.football-player-10 > span {
   font-size: 25px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
@@ -198,16 +198,16 @@
   right: 438px;
 }
 
-.player-11 {
+.football-player-11 {
   display: inline-block;
   position: relative;
   top: -401px;
   right: -205px;
 }
-.player-11 > img {
+.football-player-11 > img {
   width: 14%;
 }
-.player-11 > span {
+.football-player-11 > span {
   font-size: 25px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
@@ -218,7 +218,106 @@
   right: 438px;
 }
 
-.playerFieldInput {
+.basketball-player-1 {
+  display: inline-block;
+  position: relative;
+  transform: translate(299.048px, 55.2381px);
+}
+
+.basketball-player-1 > span {
+  margin-left: 11%;
+  margin-top: 15%;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  color: #e2e2e2;
+  text-align: center;
+  position: absolute;
+}
+
+.basketball-player-2 {
+  display: inline-block;
+  position: relative;
+  transform: translate(-107px, 114.286px);
+}
+
+.basketball-player-2 > span {
+  margin-left: 11%;
+  margin-top: 15%;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  color: #e2e2e2;
+  text-align: center;
+  position: absolute;
+}
+
+.basketball-player-3 {
+  display: inline-block;
+  position: relative;
+  transform: translate(125.714px, -38.0952px);
+}
+
+.basketball-player-3 > span {
+  margin-left: 11%;
+  margin-top: 15%;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  color: #e2e2e2;
+  text-align: center;
+  position: absolute;
+}
+
+.basketball-player-4 {
+  display: inline-block;
+  position: relative;
+  transform: translate(202.2858px, 25.7143px);
+}
+
+.basketball-player-4 > span {
+  margin-left: 11%;
+  margin-top: 15%;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  color: #e2e2e2;
+  text-align: center;
+  position: absolute;
+}
+
+.basketball-player-5 {
+  display: inline-block;
+  position: relative;
+  transform: translate(212.381px, -6.66669px);
+}
+
+.basketball-player-5 > span {
+  margin-left: 11%;
+  margin-top: 15%;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  color: #e2e2e2;
+  text-align: center;
+  position: absolute;
+}
+
+.football-player-field-input {
+  width: 21%;
+  margin-left: -17px;
+  background: transparent;
+  border: none;
+  text-align: center;
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.8rem;
+  letter-spacing: 0.2px;
+  text-shadow: 1px 1px 1px #000;
+  height: 20px;
+}
+
+.basketball-player-field-input {
   width: 21%;
   margin-left: -17px;
   background: transparent;

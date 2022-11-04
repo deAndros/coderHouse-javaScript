@@ -38,7 +38,19 @@ buttons["loadLegacyTeamButton"].addEventListener("click", () =>
 );
 formElements["teamForm"].addEventListener("submit", submitTeamHandler);
 
-//Función auxiliar para encontrar el primer número entero positivo que no esté en un arreglo
+formElements["selectSport"].addEventListener("change", () => {
+  sportChangeHandler(
+    formElements["selectSport"].options[
+      formElements["selectSport"].selectedIndex
+    ].value
+  );
+});
+
+/**
+ * Función utilizada para asignar el dorsal de un nuevo jugador
+ * @param {Array} A Arreglo con valores numéricos
+ * @return {Number} Primer número positivo disponible en el arreglo "A"
+ */
 let firstMissingPositive = function (A) {
   let j = 0;
   for (let i = 0; i < A.length; i++) {
@@ -68,6 +80,13 @@ let firstMissingPositive = function (A) {
   return ++k;
 };
 
+/**
+ * Función encargada de instanciar un equipo y con sus respectivos jugadores
+ * @param {String} teamName Nombre del equipo
+ * @param {String} teamSport Tipo de deporte
+ * @param {Number} teamPlayerAmount Cantidad con la que se inicializará el equipo
+ * @return {Team}
+ */
 function buildTeam(teamName, teamSport, teamPlayerAmount) {
   let team = new Team(teamName, teamSport);
 
@@ -79,12 +98,24 @@ function buildTeam(teamName, teamSport, teamPlayerAmount) {
   mainTeam = team;
 }
 
-//Handlers
+//________________________________________________Handlers____________________________________________________//
+
+/**
+ * Handler encargado de agregar un jugador nuevo a un equipo preexistente, le da comportamiento al botón "+"
+ * @param {Team} team Equipo al que se le agrega un jugador
+ */
 function addPlayerToTeamHandler(team) {
-  if (team.players.length === 11) {
+  if (team.sport === "football" && team.players.length === 11) {
     Swal.fire(
       "Demasiados jugadores!",
-      "Recuerda que no es posible tener más de 11 jugadores en un equipo",
+      "Recuerda que no es posible tener más de 11 jugadores en un equipo de fútbol",
+      "error"
+    );
+    return;
+  } else if (team.sport === "basketball" && team.players.length === 5) {
+    Swal.fire(
+      "Demasiados jugadores!",
+      "Recuerda que no es posible tener más de 5 jugadores en un equipo de básquet",
       "error"
     );
     return;
@@ -113,6 +144,10 @@ function addPlayerToTeamHandler(team) {
   renderPlayersTab(mainTeam);
 }
 
+/**
+ * Handler que orquesta la creación y el renderizado de un nuevo equipo
+ * @param {Event} submitEvent Evento que se dispara al confirmar el formulario de la tab "Equipo"
+ */
 function submitTeamHandler(submitEvent) {
   submitEvent.preventDefault();
 
@@ -179,6 +214,10 @@ function submitTeamHandler(submitEvent) {
   }
 }
 
+/**
+ * Handler que elimina el equipo actual
+ * @param {Team} team Equipo a eliminar
+ */
 function deleteTeamHandler(team) {
   Swal.fire({
     title: "¿Eliminar este equipo?",
@@ -193,13 +232,16 @@ function deleteTeamHandler(team) {
     },
   }).then((result) => {
     if (result.isConfirmed) {
+      //Si el nombre del equipo en cancha coincide con el del equipo que está en el storage, limpia el storage
+      mainTeam.name === fetchFromStorage().name && deleteTeamFromStorage();
+
+      //Asigno al equipo principal un equipo vacío para renderizar, luego vuelvo a dejarlo undefined
       team = new Team();
       mainTeam = team;
-
       renderFieldPlayers(mainTeam);
       renderPlayersTab(mainTeam);
-      deleteTeamFromStorage();
       mainTeam = undefined;
+
       tabs["teamTab"].click();
       renderableElements["teamNameHeader"].innerHTML = "";
       renderableElements["teamNameHeader"].hidden = true;
@@ -212,6 +254,10 @@ function deleteTeamHandler(team) {
   });
 }
 
+/**
+ * Handler encargado de cargar un equipo
+ * @param {String} source Parámetro que indica si el equipo se debe cargar desde el local storage o bien desde el JSON de equipos de legado
+ */
 async function loadTeamHandler(source) {
   let teamToLoad;
   switch (source) {
@@ -230,7 +276,6 @@ async function loadTeamHandler(source) {
         .then((promise) => {
           return promise.json();
         })
-        //Retorna un objeto JSON, no es necesario escribir return porque la función flecha si no lleva {} tiene un return implicito
         .then((data) => {
           let chosenLegacyTeam =
             formElements["selectLegacyTeam"].options[
@@ -260,6 +305,10 @@ async function loadTeamHandler(source) {
   );
 }
 
+/**
+ * Handler encargado de guardar un equipo que esté en cancha
+ * @param {Team} team Equipo a guardar
+ */
 function saveTeamHandler(team) {
   if (!team) {
     Swal.fire(
@@ -277,6 +326,12 @@ function saveTeamHandler(team) {
   );
 }
 
+/**
+ * Handler encargado de modificar los atributos de un jugador del equipo en cancha y plasmar los cambios en el DOM (interactúa con el domPrinter)
+ * @param {Number} i Índice que representa la fila de la tab de jugadores que se modificó, coincide con la posición del jugador modificado en el arreglo de jugadores
+ * @param {Element} modifiedElement Elemento del DOM en el que el usuario ingresó el valor a modificar
+ * @param {Team} team Equipo en cancha sobre el que contiene al jugador al que se le debe aplicar la modificación
+ */
 function updatePlayerHandler(i, modifiedElement, team) {
   switch (modifiedElement) {
     case "PLAYER NAME":
@@ -320,7 +375,34 @@ function updatePlayerHandler(i, modifiedElement, team) {
   }
 }
 
-//TODO: Implementar DropZone de forma tal que los jugadores solo puedan arrastrarse por el campo de juego
+/**
+ * Modifica el valor máximo disponible en el select de cantidad de jugadores
+ * @param {String} selectedSport Valor seleccionado
+ */
+function sportChangeHandler(selectedSport) {
+  if (selectedSport === "football") {
+    formElements["selectPlayerAmount"].innerHTML = `<option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11" selected="">11</option>`;
+  } else {
+    formElements["selectPlayerAmount"].innerHTML = `<option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5" selected="">5</option>`;
+  }
+}
+
+//________________________________________________Interact JS____________________________________________________//
+
 const position = { x: 0, y: 0 };
 
 //Función que le da al atributo draggable la funcionalidad del drag and drop
@@ -338,7 +420,7 @@ interact(".draggable").draggable({
   },
 });
 
-//Función que permite cambiar el color de camiseta al clickear sobre ella
+//Función que permite alternar la clase de un determinado elemento del DOM (se utiliza para poder cambiar a la camiseta del arquero)
 interact(".tap-target")
   .on("tap", function (event) {
     event.currentTarget.classList.toggle("switch-bg");

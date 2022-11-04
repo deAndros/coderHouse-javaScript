@@ -12,24 +12,44 @@ function renderFieldPlayers(team) {
     "teamNameHeader"
   ].innerHTML = `<span class="team-name-header">${team.name}</span>`;
 
+  let kit;
+  let isToggable;
+
+  //Como son solo dos disciplinas, lo resuelvo con un if/else. Si fuesen más, correspondería un switch.
+  if (team.sport === "football") {
+    kit = "footballKit";
+    isToggable = 'class="tap-target"';
+    renderableElements["field"].style.background =
+      "url(../assets/images/FootballCourt.png)";
+  } else {
+    kit = "basketballKit";
+    isToggable = "";
+    renderableElements["field"].style.background =
+      "url(../assets/images/BasketballCourt.png)";
+  }
+
   for (let i = 0; i < team.players.length; i++) {
     renderableElements["field"].innerHTML = `${
       renderableElements["field"].innerHTML
     }
-    <div class="player-${i + 1} draggable" draggable="true">
+    <div class="${team.sport}-player-${i + 1} draggable" draggable="true">
       <span id="player-${i + 1}-field-number">${
       team.players[i].shirtNumber
     }</span>
-      <img src="../assets/images/footballKit.png" class="tap-target" alt="camiseta">
+      <img src="../assets/images/${kit}.png" ${isToggable} alt="camiseta">
       </br>
-      <input class="playerFieldInput" id="player-${i + 1}-field-input" value="${
-      team.players[i].name
-    }">
+      <input class="${team.sport}-player-field-input" id="player-${
+      i + 1
+    }-field-input" value="${team.players[i].name}">
     </div>`;
   }
+  //../assets/images/footballKit.png
 }
 
-//Función que renderiza a los jugadores en la tab de jugadores
+/**
+ * Recibe un equipo y renderiza el la tab de jugadores
+ * @param {Team} team Instancia de la clase Team
+ */
 function renderPlayersTab(team) {
   //Vacío las columnas de la tab de jugadores
   renderableElements["playersTabShirtNumberColumn"].innerHTML = "";
