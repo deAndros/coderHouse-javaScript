@@ -3,6 +3,7 @@ import Player from "./classes/Player.class.js";
 import {
   renderFieldPlayers,
   renderPlayersTab,
+  playerAmountPrinter,
 } from "./auxFunctions/domPrinter.js";
 import {
   saveTeamToStorage,
@@ -16,10 +17,9 @@ import {
   renderableElements,
 } from "./constants/domElements.js";
 
-//TODO Ver la clase 11 para preparar el proyecto para su entrega (Workshop)
-//TODO Ver la clase 12 para aplicar sugar syntax y simplificaciones al proyecto
-
 let mainTeam = undefined;
+
+//________________________________________________Mapeo de Event Listeners____________________________________________________//
 
 buttons["playerAddButton"].addEventListener("click", () =>
   addPlayerToTeamHandler(mainTeam)
@@ -46,6 +46,7 @@ formElements["selectSport"].addEventListener("change", () => {
   );
 });
 
+//________________________________________________Funciones Auxiliares____________________________________________________//
 /**
  * Función utilizada para asignar el dorsal de un nuevo jugador
  * @param {Array} A Arreglo con valores numéricos
@@ -376,29 +377,11 @@ function updatePlayerHandler(i, modifiedElement, team) {
 }
 
 /**
- * Modifica el valor máximo disponible en el select de cantidad de jugadores
- * @param {String} selectedSport Valor seleccionado
+ * Handler que envía la orden de reimprimir la cantidad máxima de jugadores ante un cambio en el deporte seleccionado
+ * @param {String} selectedSport Deporte seleccionado
  */
 function sportChangeHandler(selectedSport) {
-  if (selectedSport === "football") {
-    formElements["selectPlayerAmount"].innerHTML = `<option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-    <option value="11" selected="">11</option>`;
-  } else {
-    formElements["selectPlayerAmount"].innerHTML = `<option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5" selected="">5</option>`;
-  }
+  playerAmountPrinter(selectedSport);
 }
 
 //________________________________________________Interact JS____________________________________________________//
