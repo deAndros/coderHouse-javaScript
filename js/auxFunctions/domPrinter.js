@@ -1,5 +1,5 @@
 import addEventListenersToPlayersTab from "./eventListenerAdder.js";
-import { renderableElements } from "../constants/domElements.js";
+import { renderableElements, formElements } from "../constants/domElements.js";
 
 /**
  * Recibe un equipo y renderiza el campo de juego con los jugadores que lo integran
