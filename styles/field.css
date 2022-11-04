@@ -2,7 +2,6 @@
 #field.striped {
   /*position: relative;*/
   background: url("../assets/images/FootballCourt.png");
-  background-size: 480px 600px;
   border-style: inset;
   border-color: rgba(172, 255, 47, 0.69);
   border-width: 2px;
