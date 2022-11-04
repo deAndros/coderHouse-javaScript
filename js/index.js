@@ -222,7 +222,7 @@ function submitTeamHandler(submitEvent) {
 function deleteTeamHandler(team) {
   Swal.fire({
     title: "¿Eliminar este equipo?",
-    html: `El equipo <b>${team.name}</b> se eliminará permantentemente`,
+    html: `El equipo <b>${team.name}</b> se eliminará permantentemente, no podrá volver a cargarse`,
     showDenyButton: true,
     confirmButtonText: "Sí",
     denyButtonText: "No",
